@@ -88,12 +88,14 @@ pi.ajax = function (params) {
 	r.open(params.type, params.url, true);
 	r.onreadystatechange = function () {
 		if (r.readyState !== 4 || r.status !== 200) {
-			params.error();
+			if (typeof(params.error)!=='undefined') {
+				params.error(r.responseText);
+			}
 			return;
 		}
-		params.success();
+		params.success(r.responseText);
 	};
-	r.send(params.params);
+	r.send(params.params||"");
 };
 
 /**
