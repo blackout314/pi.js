@@ -1,11 +1,13 @@
 /* carlo 'blackout' denaro */
 
 /*global window,document,Element,alert,console,XMLHttpRequest */
+/*jslint plusplus: true */
 
 var feature = {
 	"addEventListener" : !!window.addEventListener,			// eventListener
 	"querySelectorAll" : !!document.querySelectorAll,		// querySelector
-	"classList" : !!document.documentElement.classList		// classList
+	"classList" : !!document.documentElement.classList,		// classList
+	"DEBUG" : true											// debug
 };
 
 /**
@@ -65,6 +67,45 @@ if (feature.classList) {
 		elm.classList.toggle(c);
 	};
 }
+/**
+ *
+ */
+pii.classAdd = function (elms, c) {
+	"use strict";
+	var i;
+	if (typeof (elms) !== 'Object' && elms.length <= 0) {
+		return false;
+	}
+	for (i = 0; i < elms.length; i++) {
+		pi.classAdd(elms[i], c);
+	}
+};
+/**
+ *
+ */
+pii.classDel = function (elms, c) {
+	"use strict";
+	var i;
+	if (typeof (elms) !== 'Object' && elms.length <= 0) {
+		return false;
+	}
+	for (i = 0; i < elms.length; i++) {
+		pi.classDel(elms[i], c);
+	}
+};
+/**
+ *
+ */
+pii.classToggle = function (elms, c) {
+	"use strict";
+	var i;
+	if (typeof (elms) !== 'Object' && elms.length <= 0) {
+		return false;
+	}
+	for (i = 0; i < elms.length; i++) {
+		pi.classToggle(elms[i], c);
+	}
+};
 
 /**
  * @example pi.ready( callback );
@@ -88,14 +129,14 @@ pi.ajax = function (params) {
 	r.open(params.type, params.url, true);
 	r.onreadystatechange = function () {
 		if (r.readyState !== 4 || r.status !== 200) {
-			if (typeof(params.error)!=='undefined') {
+			if (typeof (params.error) !== 'undefined') {
 				params.error(r.responseText);
 			}
 			return;
 		}
 		params.success(r.responseText);
 	};
-	r.send(params.params||"");
+	r.send(params.params || "");
 };
 
 /**
@@ -104,5 +145,73 @@ pi.ajax = function (params) {
  * pii('#try .sub')[0].dataset
  *
  */
+
+pi.debug = function (action, message) {
+	"use strict";
+	console.debug('[' + action + '] ' + message);
+};
+
+/**
+ * simple pub sub
+ */
+var topics = {};
+/**
+ * @param {String} topic
+ * @param {Array} args arguments
+ */
+pi.pub = function (topic, args) {
+	"use strict";
+	if (topics[topic]) {
+		var thisTopic = topics[topic],
+			thisArgs = args || [],
+			k,
+			j;
+		for (k = 0, j = thisTopic.length; k < j; k++) {
+			if (feature.DEBUG) {
+				pi.debug('PUB', topic);
+			}
+			thisTopic[k].apply(pi, thisArgs);
+		}
+	}
+};
+/**
+ * @param {String} topic
+ * @param {Object} callback
+ */
+pi.sub = function (topic, callback) {
+	"use strict";
+	if (!topics[topic]) {
+		topics[topic] = [];
+	}
+	if (feature.DEBUG) {
+		pi.debug('SUB', topic);
+	}
+	topics[topic].push(callback);
+	return {
+		topic: topic,
+		callback: callback
+	};
+};
+/**
+ * @param {String} handle.topic
+ * @param {Object} handle.callback
+ */
+pi.unsub = function (handle) {
+	"use strict";
+	var topic = handle.topic;
+	if (topics[topic]) {
+		var thisTopic = topics[topic],
+			y,
+			w;
+		for (y = 0, w = thisTopic.length; y < w; y++) {
+			if (thisTopic[y] === handle.callback) {
+				if (feature.DEBUG) {
+					pi.debug('DEL', topic);
+				}
+				thisTopic.splice(y, 1);
+			}
+		}
+	}
+};
 
 // -- eof

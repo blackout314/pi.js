@@ -1,0 +1,33 @@
+<html>
+	<head>
+		<title>playground</title>
+		<script src="../pi.js" type="application/javascript"></script>
+	</head>
+	<body>
+		<div id="try">
+			<div class="sub">1</div>
+			<div class="sub">2</div>
+			<div class="sub">3</div>
+		</div>
+		<script>
+			// pub sub messages
+			var callback = function(a){ console.log('LOG: '+a); };
+			pi.sub('NOTICE', callback);
+
+			pi.pub('NOTICE',['hello']);
+			pi.unsub({'topic':'NOTICE','callback':callback});
+			pi.pub('NOTICE',['hello']);
+
+			// other playground
+			pi.ready(function(){
+				pi('#try').on('click',function(){
+					console.log('x');
+				});
+				var listener = function(t){
+					pi.classAdd(t.target,'over');
+				};
+				pii('#try .sub')[0].on('mouseover',listener);
+			});
+		</script>
+	</body>
+</html>
