@@ -1,6 +1,6 @@
 /* carlo 'blackout' denaro */
 
-/*global window,document,Element,alert,console,XMLHttpRequest */
+/*global window,document,Element,alert,console,XMLHttpRequest,localStorage,Exception */
 /*jslint plusplus: true */
 
 var feature = {
@@ -213,5 +213,29 @@ pi.unsub = function (handle) {
 		}
 	}
 };
+
+/**
+ * local storage
+ */
+pi.storage = (function () {
+	"use strict";
+	return {
+		set: function (key, value) {
+			try {
+				localStorage.setItem(key, value);
+			} catch (error) {
+				if (error.name === 'QUOTA_EXCEEDED_ERR') {
+					throw new Exception(error.name);
+				}
+			}
+		},
+		get: function (key) {
+			return localStorage.getItem(key);
+		},
+		del: function (key) {
+			localStorage.removeItem(key);
+		}
+	};
+}());
 
 // -- eof
