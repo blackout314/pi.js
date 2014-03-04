@@ -116,30 +116,6 @@ pi.ready = function (callback) {
 };
 
 /**
- * @param {Object} 
- * @param {String} params.type
- * @param {String} params.url
- * @param {String} params.params
- * @param {Function} params.success
- * @param {Function} params.error
- */
-pi.ajax = function (params) {
-	"use strict";
-	var r = new XMLHttpRequest();
-	r.open(params.type, params.url, true);
-	r.onreadystatechange = function () {
-		if (r.readyState !== 4 || r.status !== 200) {
-			if (typeof (params.error) !== 'undefined') {
-				params.error(r.responseText);
-			}
-			return;
-		}
-		params.success(r.responseText);
-	};
-	r.send(params.params || "");
-};
-
-/**
  * dataset use
  *
  * pii('#try .sub')[0].dataset
@@ -254,7 +230,7 @@ pi.storage = (function () {
 				this.set(prefix, JSON.stringify(elm));
 			} else {
 				// read || del
-				age = (now - elm[key].ttl);
+				age = (now - (typeof (elm[key]) !== 'undefined' ? elm[key].ttl : 0));
 				if (feature.DEBUG) {
 					pi.debug('AGE', age + ' key: ' + key);
 				}
@@ -268,5 +244,38 @@ pi.storage = (function () {
 		}
 	};
 }());
+
+/**
+ * @param {Object} 
+ * @param {String} params.type
+ * @param {String} params.url
+ * @param {Function} params.success
+ * @param {Function} params.error
+ * @param {String} [params.params]
+ * @param {Number} [params.ttl] time to live for caching
+ */
+pi.ajax = function (params) {
+	"use strict";
+	var r = new XMLHttpRequest(),
+		cache = pi.storage.cache(params.type + params.url);
+	// hit cache
+	if (cache) {
+		params.success(cache);
+		return;
+	}
+	r.open(params.type, params.url, true);
+	r.onreadystatechange = function () {
+		if (r.readyState !== 4 || r.status !== 200) {
+			if (typeof (params.error) !== 'undefined') {
+				params.error(r.responseText);
+			}
+			return;
+		}
+		// fill cache
+		pi.storage.cache(params.type + params.url, r.responseText, (params.ttl || 1000 * 60));
+		params.success(r.responseText);
+	};
+	r.send(params.params || "");
+};
 
 // -- eof
