@@ -233,7 +233,38 @@ pi.storage = (function () {
 			return localStorage.getItem(key);
 		},
 		del: function (key) {
-			localStorage.removeItem(key);
+			if (typeof (key) === 'undefined') {
+				localStorage.clear();
+			} else {
+				localStorage.removeItem(key);
+			}
+		},
+		cache: function (key, value, ttl) {
+			var now = new Date().valueOf(),
+				prefix = 'pic',
+				age = 0,
+				elm = {};
+			elm = JSON.parse(this.get(prefix) || "{}");
+			if (typeof (value) !== 'undefined') {
+				// write
+				elm[key] = {
+					d: value,
+					ttl: now + ttl
+				};
+				this.set(prefix, JSON.stringify(elm));
+			} else {
+				// read || del
+				age = (now - elm[key].ttl);
+				if (feature.DEBUG) {
+					pi.debug('AGE', age + ' key: ' + key);
+				}
+				if (!elm[key] || elm === null || age > 1) {
+					this.del(elm[key]);
+					return false;
+				} else {
+					return elm[key].d;
+				}
+			}
 		}
 	};
 }());
