@@ -1,6 +1,6 @@
 /* carlo 'blackout' denaro */
 
-/*global window,document,Element,alert,console,XMLHttpRequest,localStorage,Exception */
+/*global window,document,Element,NodeList,alert,console,XMLHttpRequest,localStorage,Exception */
 /*jslint plusplus: true */
 
 var feature = {
@@ -36,6 +36,26 @@ Element.prototype.on = Element.prototype.addEventListener;
  * @example pi('#id').rm('click', callback)
  */
 Element.prototype.rm = Element.prototype.removeEventListener;
+/**
+ * @example pii('.class').on('click', callback)
+ */
+NodeList.prototype.on = function (event, fn) {
+	"use strict";
+	var i = 0;
+	for (i = 0; i < this.length; i++) {
+		this.item(i).addEventListener(event, fn, false);
+	}
+};
+/**
+ * @example pii('.class').rm('click', callback)
+ */
+NodeList.prototype.rm = function (event, fn) {
+	"use strict";
+	var i = 0;
+	for (i = 0; i < this.length; i++) {
+		this.item(i).removeEventListener(event, fn, false);
+	}
+};
 
 if (feature.classList) {
 	/**
