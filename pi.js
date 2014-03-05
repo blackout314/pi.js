@@ -1,26 +1,37 @@
-/* carlo 'blackout' denaro */
+/**
+ * 
+ * carlo 'blackout' denaro 
+ *
+ */
 
 /*global window,document,Element,NodeList,alert,console,XMLHttpRequest,localStorage,Exception */
 /*jslint plusplus: true */
 
 var feature = {
-	"addEventListener" : !!window.addEventListener,			// eventListener
-	"querySelectorAll" : !!document.querySelectorAll,		// querySelector
-	"classList" : !!document.documentElement.classList,		// classList
-	"DEBUG" : true											// debug
-};
-
+		"addEventListener" : !!window.addEventListener,			// eventListener
+		"querySelectorAll" : !!document.querySelectorAll,		// querySelector
+		"classList" : !!document.documentElement.classList,		// classList
+		"DEBUG" : true											// debug
+	},
+	pi = document.querySelector.bind(document),
+	pii = document.querySelectorAll.bind(document);
 /**
+ * @name pi
  * @example pi('#id')
  */
-var pi = document.querySelector.bind(document);
-
 /**
+ * @name pii
  * @example pii('.class')
  */
-var pii = document.querySelectorAll.bind(document);
 
-/**
+pi.debug = function (action, message) {
+	"use strict";
+	if (feature.DEBUG) {
+		console.debug('[' + action + '] ' + message);
+	}
+};
+
+/*!
  * listener example
  *
  * var listener = function(e) { console.log(e); };
@@ -28,6 +39,7 @@ var pii = document.querySelectorAll.bind(document);
  * pi('#try').rm('click',listener);
  *
  */
+
 /**
  * @example pi('#id').on('click', callback)
  */
@@ -36,6 +48,7 @@ Element.prototype.on = Element.prototype.addEventListener;
  * @example pi('#id').rm('click', callback)
  */
 Element.prototype.rm = Element.prototype.removeEventListener;
+
 /**
  * @example pii('.class').on('click', callback)
  */
@@ -63,6 +76,9 @@ if (feature.classList) {
 	 */
 	pi.classAdd = function (elm, c) {
 		"use strict";
+		if (typeof (elm) === 'string') {
+			elm = pi(elm);
+		}
 		elm.classList.add(c);
 	};
 	/**
@@ -70,6 +86,9 @@ if (feature.classList) {
 	 */
 	pi.classDel = function (elm, c) {
 		"use strict";
+		if (typeof (elm) === 'string') {
+			elm = pi(elm);
+		}
 		elm.classList.remove(c);
 	};
 	/**
@@ -77,6 +96,9 @@ if (feature.classList) {
 	 */
 	pi.classHas = function (elm, c) {
 		"use strict";
+		if (typeof (elm) === 'string') {
+			elm = pi(elm);
+		}
 		elm.classList.contains(c);
 	};
 	/**
@@ -84,6 +106,9 @@ if (feature.classList) {
 	 */
 	pi.classToggle = function (elm, c) {
 		"use strict";
+		if (typeof (elm) === 'string') {
+			elm = pi(elm);
+		}
 		elm.classList.toggle(c);
 	};
 }
@@ -93,6 +118,9 @@ if (feature.classList) {
 pii.classAdd = function (elms, c) {
 	"use strict";
 	var i;
+	if (typeof (elms) === 'string') {
+		elms = pii(elms);
+	}
 	if (typeof (elms) !== 'Object' && elms.length <= 0) {
 		return false;
 	}
@@ -106,6 +134,9 @@ pii.classAdd = function (elms, c) {
 pii.classDel = function (elms, c) {
 	"use strict";
 	var i;
+	if (typeof (elms) === 'string') {
+		elms = pii(elms);
+	}
 	if (typeof (elms) !== 'Object' && elms.length <= 0) {
 		return false;
 	}
@@ -119,6 +150,9 @@ pii.classDel = function (elms, c) {
 pii.classToggle = function (elms, c) {
 	"use strict";
 	var i;
+	if (typeof (elms) === 'string') {
+		elms = pii(elms);
+	}
 	if (typeof (elms) !== 'Object' && elms.length <= 0) {
 		return false;
 	}
@@ -142,11 +176,6 @@ pi.ready = function (callback) {
  *
  */
 
-pi.debug = function (action, message) {
-	"use strict";
-	console.debug('[' + action + '] ' + message);
-};
-
 /**
  * simple pub sub
  */
@@ -163,9 +192,7 @@ pi.pub = function (topic, args) {
 			k,
 			j;
 		for (k = 0, j = thisTopic.length; k < j; k++) {
-			if (feature.DEBUG) {
-				pi.debug('PUB', topic);
-			}
+			pi.debug('PUB', topic);
 			thisTopic[k].apply(pi, thisArgs);
 		}
 	}
@@ -179,9 +206,7 @@ pi.sub = function (topic, callback) {
 	if (!topics[topic]) {
 		topics[topic] = [];
 	}
-	if (feature.DEBUG) {
-		pi.debug('SUB', topic);
-	}
+	pi.debug('SUB', topic);
 	topics[topic].push(callback);
 	return {
 		topic: topic,
@@ -194,16 +219,15 @@ pi.sub = function (topic, callback) {
  */
 pi.unsub = function (handle) {
 	"use strict";
-	var topic = handle.topic;
+	var topic = handle.topic,
+		thisTopic = [],
+		y,
+		w;
 	if (topics[topic]) {
-		var thisTopic = topics[topic],
-			y,
-			w;
+		thisTopic = topics[topic];
 		for (y = 0, w = thisTopic.length; y < w; y++) {
 			if (thisTopic[y] === handle.callback) {
-				if (feature.DEBUG) {
-					pi.debug('DEL', topic);
-				}
+				pi.debug('DEL', topic);
 				thisTopic.splice(y, 1);
 			}
 		}
@@ -251,9 +275,7 @@ pi.storage = (function () {
 			} else {
 				// read || del
 				age = (now - (typeof (elm[key]) !== 'undefined' ? elm[key].ttl : 0));
-				if (feature.DEBUG) {
-					pi.debug('AGE', age + ' key: ' + key);
-				}
+				pi.debug('AGE', age + ' key: ' + key);
 				if (!elm[key] || elm === null || age > 1) {
 					this.del(elm[key]);
 					return false;
