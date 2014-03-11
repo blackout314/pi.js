@@ -1,7 +1,7 @@
 /*! -- carlo 'blackout' denaro -- */
 
-/*! global window,document,Element,NodeList,alert,console,XMLHttpRequest,localStorage,Exception */
-/*! jslint plusplus: true */
+/*global window,document,Element,NodeList,alert,console,XMLHttpRequest,localStorage,Exception */
+/*jslint plusplus: true */
 
 var feature = {
         "version" : "@@VERSION_NUMBER",
