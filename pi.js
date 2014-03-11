@@ -1,11 +1,7 @@
-/**
- * 
- * carlo 'blackout' denaro 
- *
- */
+/*! -- carlo 'blackout' denaro -- */
 
-/*global window,document,Element,NodeList,alert,console,XMLHttpRequest,localStorage,Exception */
-/*jslint plusplus: true */
+/*! global window,document,Element,NodeList,alert,console,XMLHttpRequest,localStorage,Exception */
+/*! jslint plusplus: true */
 
 var feature = {
         "version" : "@@VERSION_NUMBER",
@@ -70,6 +66,8 @@ NodeList.prototype.rm = function (event, fn) {
 		this.item(i).removeEventListener(event, fn, false);
 	}
 };
+
+// -- html utils
 
 if (feature.classList) {
 	/**
@@ -163,6 +161,28 @@ pii.classToggle = function (elms, c) {
 };
 
 /**
+ * @param {String} elm elm to append
+ * @param {String} target target to append
+ * @param {String} pos top|down|append
+ */
+pi.append = function (elm, target, pos) {
+	"use strict";
+	elm = pi(elm);
+	target = pi(target);
+	switch (pos) {
+	case 'top':
+		target.parentNode.insertBefore(elm, target);
+		break;
+	case 'down':
+		target.parentNode.insertBefore(elm, target.nextSibling);
+		break;
+	default:
+		target.appendChild(elm);
+		break;
+	}
+};
+
+/**
  * @example pi.ready( callback );
  */
 pi.ready = function (callback) {
@@ -176,6 +196,8 @@ pi.ready = function (callback) {
  * pii('#try .sub')[0].dataset
  *
  */
+
+// -- pub/sub notifier
 
 /**
  * simple pub sub
@@ -235,6 +257,8 @@ pi.unsub = function (handle) {
 	}
 };
 
+// -- storage
+
 /**
  * local storage
  */
@@ -288,27 +312,7 @@ pi.storage = (function () {
 	};
 }());
 
-/**
- * @param {String} elm elm to append
- * @param {String} target target to append
- * @param {String} pos top|down|append
- */
-pi.append = function (elm, target, pos) {
-	"use strict";
-	elm = pi(elm);
-	target = pi(target);
-	switch (pos) {
-	case 'top':
-		target.parentNode.insertBefore(elm, target);
-		break;
-	case 'down':
-		target.parentNode.insertBefore(elm, target.nextSibling);
-		break;
-	default:
-		target.appendChild(elm);
-		break;
-	}
-};
+// -- ajax
 
 /**
  * @param {Object} 
