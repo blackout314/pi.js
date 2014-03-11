@@ -11,13 +11,36 @@ module.exports = function(grunt) {
         src: '<%= pkg.name %>.js',
         dest: 'build/<%= pkg.name %>.min.js'
       }
+    },
+    replace: {
+        dist: {
+            options: {
+                prefix:'',
+                patterns: [
+                    {
+                        match: '/@@VERSION_NUMBER/g',
+                        replacement: '<%= pkg.version %>',
+                        expression: true
+                    }
+                ]
+            },
+            files: [
+                { 
+                    expand: true, 
+                    flatten: true, 
+                    src: ['build/<%= pkg.name %>.min.js'], 
+                    dest: 'build/' 
+                }
+            ]
+      }
     }
   });
 
   // Load the plugin that provides the "uglify" task.
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-replace');
 
   // Default task(s).
-  grunt.registerTask('default', ['uglify']);
+  grunt.registerTask('default', ['uglify','replace']);
 
 };

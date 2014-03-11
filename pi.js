@@ -8,6 +8,7 @@
 /*jslint plusplus: true */
 
 var feature = {
+        "version" : "@@VERSION_NUMBER",
 		"addEventListener" : !!window.addEventListener,			// eventListener
 		"querySelectorAll" : !!document.querySelectorAll,		// querySelector
 		"classList" : !!document.documentElement.classList,		// classList
