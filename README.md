@@ -30,6 +30,10 @@ Github!
 - Windows 7.5+
 - IE9+
 
+##JSPerf
+* http://jsperf.com/jquery-vs-pijs
+* http://jsperf.com/jquery-vs-pijs-2
+
 
 ##Example
 ###Elm & Elms select
