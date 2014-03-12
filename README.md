@@ -29,3 +29,57 @@ Github!
 - Opera Mobile
 - Windows 7.5+
 - IE9+
+
+
+##Example
+###Elm & Elms select
+```javascript
+pi('#id')
+pii('.class')
+```
+
+###Listener
+```javascript
+var listener = function(e) { console.log(e); };
+pi('#try').on('click',listener);
+pi('#try').rm('click',listener);
+pii('.class').on('click',listener);
+pii('#try .sub')[0].on('mouseover',listener);
+```
+
+###Class manipulation
+```javascript
+pi.classAdd('#try', 'newClass');
+pii.classAdd('.class', 'newClass');
+```
+
+###jQuery .ready
+```javascript
+pi.ready(function(){
+});
+```
+
+###Pub/Sub Notifier
+```javascript
+var callback = function(a){ console.log('LOG: '+a); };
+pi.sub('NOTICE', callback);
+
+pi.pub('NOTICE',['hello']);
+pi.unsub({'topic':'NOTICE','callback':callback});
+pi.pub('NOTICE',['hello']);
+```
+
+###LocalStorage
+```javascript
+pi.storage.set('key','value');
+```
+
+###AjaxCall
+```javascript
+var ok = function (data) { console.log(data); };
+pi.ajax( {
+    type:'GET',
+    url:'example.json',
+    success:ok
+} );
+```
