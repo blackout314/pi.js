@@ -114,50 +114,43 @@ if (feature.classList) {
 /**
  *
  */
-pii.classAdd = function (elms, c) {
+pii.forEach = function (elms, operation) {
 	"use strict";
-	var i;
+	var args = Array.prototype.slice.call(arguments, 2),
+		i = 0;
 	if (typeof (elms) === 'string') {
 		elms = pii(elms);
 	}
-	if (typeof (elms) !== 'Object' && elms.length <= 0) {
+	if ((typeof (elms) !== 'Object' && elms.length <= 0) || typeof (operation) !== 'string') {
 		return false;
 	}
+	args = [ elms[0] ].concat(args);
 	for (i = 0; i < elms.length; i++) {
-		pi.classAdd(elms[i], c);
+		args[0] = elms[i];
+		pi[operation].apply(pi, args);
 	}
 };
+
 /**
- *
+ * alias
+ */
+pii.classAdd = function (elms, c) {
+	"use strict";
+	pii.forEach(elms, 'classAdd', c);
+};
+/**
+ * alias
  */
 pii.classDel = function (elms, c) {
 	"use strict";
-	var i;
-	if (typeof (elms) === 'string') {
-		elms = pii(elms);
-	}
-	if (typeof (elms) !== 'Object' && elms.length <= 0) {
-		return false;
-	}
-	for (i = 0; i < elms.length; i++) {
-		pi.classDel(elms[i], c);
-	}
+	pii.forEach(elms, 'classDel', c);
 };
 /**
- *
+ * alias
  */
 pii.classToggle = function (elms, c) {
 	"use strict";
-	var i;
-	if (typeof (elms) === 'string') {
-		elms = pii(elms);
-	}
-	if (typeof (elms) !== 'Object' && elms.length <= 0) {
-		return false;
-	}
-	for (i = 0; i < elms.length; i++) {
-		pi.classToggle(elms[i], c);
-	}
+	pii.forEach(elms, 'classToggle', c);
 };
 
 /**
