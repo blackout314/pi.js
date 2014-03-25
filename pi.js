@@ -129,23 +129,6 @@ if (feature.classList) {
 pii.forEach = function (elms, operation) {
 	"use strict";
 	var args = Array.prototype.slice.call(arguments, 2),
-		i = 0;
-	if (typeof (elms) === 'string') {
-		elms = pii(elms);
-	}
-	if ((typeof (elms) !== 'Object' && elms.length <= 0) || typeof (operation) !== 'string') {
-		return false;
-	}
-	args = [ elms[0] ].concat(args);
-	for (i = 0; i < elms.length; i++) {
-		args[0] = elms[i];
-		pi[operation].apply(pi, args);
-	}
-};
-
-pii.forEach2 = function (elms, operation) {
-	"use strict";
-	var args = Array.prototype.slice.call(arguments, 2),
 		i = 0,
 		a;
 	if (typeof (elms) === 'string') {
