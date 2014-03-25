@@ -4,11 +4,11 @@
 /*jslint plusplus: true */
 
 var feature = {
-        "version" : "@@VERSION_NUMBER",
-		"addEventListener" : !!window.addEventListener,			// eventListener
-		"querySelectorAll" : !!document.querySelectorAll,		// querySelector
-		"classList" : !!document.documentElement.classList,		// classList
-		"DEBUG" : false 
+	"DEBUG" : false,
+	"version" : "@@VERSION_NUMBER",
+	"addEventListener" : !!window.addEventListener,			// eventListener
+	"querySelectorAll" : !!document.querySelectorAll,		// querySelector
+	"classList" : !!document.documentElement.classList		// classList
 	},
 	pi = document.querySelector.bind(document),
 	pii = document.querySelectorAll.bind(document);
