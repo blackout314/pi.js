@@ -89,3 +89,4 @@ Github!
 - Windows 7.5+
 - IE9+
 
+made with <3 from italy
