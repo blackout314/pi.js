@@ -4,8 +4,8 @@
 /*jslint plusplus: true */
 
 var feature = {
-	"DEBUG" : false,
 	"version" : "@@VERSION_NUMBER",
+	"DEBUG" : false,
 	"addEventListener" : !!window.addEventListener,			// eventListener
 	"querySelectorAll" : !!document.querySelectorAll,		// querySelector
 	"classList" : !!document.documentElement.classList		// classList
