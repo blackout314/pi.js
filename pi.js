@@ -8,7 +8,7 @@ var feature = {
 		"addEventListener" : !!window.addEventListener,			// eventListener
 		"querySelectorAll" : !!document.querySelectorAll,		// querySelector
 		"classList" : !!document.documentElement.classList,		// classList
-		"DEBUG" : true											// debug
+		"DEBUG" : false 
 	},
 	pi = document.querySelector.bind(document),
 	pii = document.querySelectorAll.bind(document);
