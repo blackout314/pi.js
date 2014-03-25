@@ -51,20 +51,32 @@ Element.prototype.rm = Element.prototype.removeEventListener;
  */
 NodeList.prototype.on = function (event, fn) {
 	"use strict";
-	var i = 0;
+	var i = 0,
+		a;
 	for (i = 0; i < this.length; i++) {
 		this.item(i).addEventListener(event, fn, false);
 	}
+	/*
+	while ((a = this[i++]) !== undefined) {
+		a.addEventListener(event, fn, false);
+	}
+	*/
 };
 /**
  * @example pii('.class').rm('click', callback)
  */
 NodeList.prototype.rm = function (event, fn) {
 	"use strict";
-	var i = 0;
+	var i = 0,
+		a;
 	for (i = 0; i < this.length; i++) {
 		this.item(i).removeEventListener(event, fn, false);
 	}
+	/*
+	while ((a = this[i++]) !== undefined) {
+		a.removeEventListener(event, fn, false);
+	}
+	*/
 };
 
 // -- html utils
@@ -127,6 +139,24 @@ pii.forEach = function (elms, operation) {
 	args = [ elms[0] ].concat(args);
 	for (i = 0; i < elms.length; i++) {
 		args[0] = elms[i];
+		pi[operation].apply(pi, args);
+	}
+};
+
+pii.forEach2 = function (elms, operation) {
+	"use strict";
+	var args = Array.prototype.slice.call(arguments, 2),
+		i = 0,
+		a;
+	if (typeof (elms) === 'string') {
+		elms = pii(elms);
+	}
+	if ((typeof (elms) !== 'Object' && elms.length <= 0) || typeof (operation) !== 'string') {
+		return false;
+	}
+	args = [ elms[0] ].concat(args);
+	while ((a = elms[i++]) !== undefined) {
+		args[0] = a;
 		pi[operation].apply(pi, args);
 	}
 };
