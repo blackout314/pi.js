@@ -61,6 +61,7 @@ pi.ajax( {
     url:'example.json',
     success:ok
 } );
+```
 
 ##Why
 In the amazing javascript world we'll found many great framework, but this is the _mine_.
