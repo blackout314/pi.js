@@ -314,6 +314,20 @@ pi.storage = (function () {
 					return elm[key].d;
 				}
 			}
+		},
+		namespace: function (namespace) {
+			return {
+				namespace: namespace + '_',
+				set: function (key,value) {
+					pi.storage.set(this.namespace + key, value);
+				},
+				get: function (key) {
+					return pi.storage.get(this.namespace + key);
+				},
+				del: function (key) {
+					pi.storage.del(this.namespace + key);
+				}
+			}
 		}
 	};
 }());
