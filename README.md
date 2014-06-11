@@ -5,19 +5,19 @@ pi.js
 
 *modern minimalist vanilla javascript framework*
 
-##JSPerf
+## JSPerf
 * http://jsperf.com/jquery-vs-pijs
 * http://jsperf.com/jquery-vs-pijs-2
 
 
-##Example
-###Elm & Elms select
+## Example
+### Elm & Elms select
 ```javascript
 pi('#id')
 pii('.class')
 ```
 
-###Listener
+### Listener
 ```javascript
 var listener = function(e) { console.log(e); };
 pi('#try').on('click',listener);
@@ -26,19 +26,19 @@ pii('.class').on('click',listener);
 pii('#try .sub')[0].on('mouseover',listener);
 ```
 
-###Class manipulation
+### Class manipulation
 ```javascript
 pi.classAdd('#try', 'newClass');
 pii.classAdd('.class', 'newClass');
 ```
 
-###jQuery .ready
+### jQuery style .ready
 ```javascript
 pi.ready(function(){
 });
 ```
 
-###Pub/Sub Notifier
+### Pub/Sub Notifier
 ```javascript
 var callback = function(a){ console.log('LOG: '+a); };
 pi.sub('NOTICE', callback);
@@ -48,12 +48,19 @@ pi.unsub({'topic':'NOTICE','callback':callback});
 pi.pub('NOTICE',['hello']);
 ```
 
-###LocalStorage
+### LocalStorage
 ```javascript
 pi.storage.set('key','value');
 ```
 
-###AjaxCall
+### Namespace on LocalStorage
+```javascript
+var hello = pi.storage.namespace('hello');
+hello.set('key','value');	// set key
+hello.get('key');			// get key
+```
+
+### AjaxCall
 ```javascript
 var ok = function (data) { console.log(data); };
 pi.ajax( {
