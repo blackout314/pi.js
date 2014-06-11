@@ -1,66 +1,81 @@
-function Class() { "use strict"; }
-Class.prototype.construct = function () { "use strict"; };
-Class.__asMethod__ = function (func, superClass) {
-	"use strict";
-	return function () {
-		var currentSuperClass = this.$,
-			ret = {};
-		this.$ = superClass;
-		ret = func.apply(this, arguments);
-		this.$ = currentSuperClass;
-		return ret;
-	};
-};
-Class.extend = function (def) {
-	"use strict";
-	var classDef = function () {
-			if (arguments[0] !== Class) {
-				this.construct.apply(this, arguments);
-			}
-		},
-		proto = new this(Class),
-		superClass = this.prototype,
-		n = '',
-		item = '';
-	for (n in def) {
-		item = def[n];
-		if (item instanceof Function) {
-			item = Class.__asMethod__(item, superClass);
+/**
+ * Simple JavaScript Inheritance
+ * By John Resig http://ejohn.org/
+ * MIT Licensed.
+ */
+(function(){
+	var initializing = false, fnTest = /"xyz"/.test(function(){"xyz";}) ? /\b_super\b/ : /.*/;
+	// The base Class implementation (does nothing)
+	this.Class = function(){};
+	// Create a new Class that inherits from this class
+	Class.extend = function(prop) {
+		var _super = this.prototype;
+		// Instantiate a base class (but only create the instance,
+		// don't run the init constructor)
+		initializing = true;
+		var prototype = new this();
+		initializing = false;
+		// Copy the properties over onto the new prototype
+		for (var name in prop) {
+			// Check if we're overwriting an existing function
+			prototype[name] = typeof prop[name] === "function" &&
+				typeof _super[name] === "function" && fnTest.test(prop[name]) ?
+				(function(name, fn){
+					return function() {
+						var tmp = this._super;
+						// Add a new ._super() method that is the same method
+						// but on the super-class
+						this._super = _super[name];
+						// The method only need to be bound temporarily, so we
+						// remove it when we're done executing
+						var ret = fn.apply(this, arguments);
+						this._super = tmp;
+						return ret;
+					};
+				})(name, prop[name]) :
+			prop[name];
 		}
-		proto[n] = item;
-	}
-	proto.$ = superClass;
-	classDef.prototype = proto;
-	classDef.extend = this.extend;
-	return classDef;
-};
+		// The dummy class constructor
+		function Class() {
+			// All construction is actually done in the init method
+			if ( !initializing && this.init ){
+				this.init.apply(this, arguments);
+			}
+		}
+		// Populate our constructed prototype object
+		Class.prototype = prototype;
+		// Enforce the constructor to be what we expect
+		Class.prototype.constructor = Class;
+		// And make this class extendable
+		Class.extend = arguments.callee;
+		return Class;
+	};
+})();
+
+// --- prova ---
 
 var basePath = {
 	Base : "../playground/example.json"
 };
 
 var Base = Class.extend({
-	returned: {},
-	construct: function (data) {
+	init: function (data) {
 		"use strict";
 
-		pi.debug('WHO', this.getId());
+		pi.debug('WHO', this.getId+' '+this.getVersion);
 
 		var ok = function (returned) {
 			pi.debug('AJAX', returned);
 		};
+
 		pi.ajax({
 			type: 'GET',
 			url: basePath.Base,
 			success: ok
 		});
 	},
-	getId: function () {
-		"use strict";
-		return 'b';
-	},
-	getVersion: function () {
-		"use strict";
-		return '0.0.1';
-	}
+	getId: 'Base',
+	getVersion: '0.0.1'
 });
+
+// -- eof
