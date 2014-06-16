@@ -483,7 +483,7 @@ pi.route = (function () {
 		var hash = location.hash.substr(2).split('/'),	//remove #/
 			i = 0,
 			r = {};
-		for (r = routes[i]; i < routes.length; i++) {
+		for (i=0; r = routes[i], i < routes.length; i++) {
 			if (r.r === hash[0]) {
 				r.c.apply(pi, hash);
 			}
