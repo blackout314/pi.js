@@ -70,6 +70,12 @@ pi.ajax( {
 } );
 ```
 
+### Routes 
+```javascript
+var ok = function (action,arg1,arg2) { console.log(arg1); };
+pi.route.add('news', ok);	-> hash ->	#/news/arg1/arg2
+```
+
 ##Why
 In the amazing javascript world we'll found many great framework, but this is the _mine_.
 I hate IE and i have no plans to support it.

@@ -474,7 +474,10 @@ pii.lazyload = (function (global, document) {
 
 
 /**
- * simple route
+ * @name pi.route 
+ * @desc simple route ( #/action/arg1/arg2
+ *
+ * @example pi.route.add('news', theCallback)
  */
 pi.route = (function () {
 	"use strict";
@@ -490,10 +493,26 @@ pi.route = (function () {
 		}
 	}
 	window.addEventListener("hashchange", process, false);
+	// start
+	
 	return {
+		/**
+		 * @name add
+		 * @param {String} route
+		 * @param {Function} callback
+		 */
 		add: function (route, callback) {
 			var rotta = { r : route, c : callback };
 			routes.push(rotta);
+		},
+		bundle: function (routes) {
+			var j = 0;
+			for(j=0; r=routes[j], j < routes.length; j++) {
+				this.add( r.route, r.callback );
+			}
+		},
+		start: function () {
+			process();
 		}
 	};
 }());
