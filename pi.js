@@ -473,4 +473,29 @@ pii.lazyload = (function (global, document) {
 })(this, document);
 
 
+/**
+ * simple route
+ */
+pi.route = (function () {
+	"use strict";
+	var routes = [];
+	function process() {
+		var hash = location.hash.substr(2).split('/'),	//remove #/
+			i = 0,
+			r = {};
+		for (r = routes[i]; i < routes.length; i++) {
+			if (r.r === hash[0]) {
+				r.c.apply(pi, hash);
+			}
+		}
+	}
+	window.addEventListener("hashchange", process, false);
+	return {
+		add: function (route, callback) {
+			var rotta = { r : route, c : callback };
+			routes.push(rotta);
+		}
+	};
+}());
+
 // -- eof
