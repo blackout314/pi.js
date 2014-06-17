@@ -85,7 +85,8 @@ pi.route.bundle( [
 		route:'users',
 		callback:function(){ alert('users'); }
 	}
-] )
+] );
+pi.route.start('defaultAction');
 ```
 
 ##Why

@@ -516,10 +516,13 @@ pii.lazyload = (function (global, document) {
 pi.route = (function () {
 	"use strict";
 	var routes = [];
-	function process() {
+	function process (action) {
 		var hash = location.hash.substr(2).split('/'),	//remove #/
 			i = 0,
 			r = {};
+		if (typeof(action) === 'string' && hash[0] === '') {
+            hash = action.split('/');
+		}
 		for (i=0; r = routes[i], i < routes.length; i++) {
 			if (r.r === hash[0]) {
 				r.c.apply(pi, hash);
@@ -546,8 +549,8 @@ pi.route = (function () {
 				this.add( r.route, r.callback );
 			}
 		},
-		start: function () {
-			process();
+		start: function (action) {
+			process(action);
 		}
 	};
 }());
