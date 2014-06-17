@@ -28,9 +28,19 @@ pi.debug = function (action, message) {
 	}
 };
 
+/**
+ * @name pi.ready
+ * @example pi.ready( callback );
+ */
+pi.ready = function (callback) {
+	"use strict";
+	document.addEventListener("DOMContentLoaded", callback(), false);
+};
+
 /*!
  * listener example
  *
+ * @example
  * var listener = function(e) { console.log(e); };
  * pi('#try').on('click',listener);
  * pi('#try').rm('click',listener);
@@ -79,10 +89,9 @@ NodeList.prototype.rm = function (event, fn) {
 	*/
 };
 
-// -- html utils
-
 if (feature.classList) {
 	/**
+	 * @name pi.classAdd
 	 * @example pi.classAdd( pi('#id'), 'class' )
 	 */
 	pi.classAdd = function (elm, c) {
@@ -93,6 +102,7 @@ if (feature.classList) {
 		elm.classList.add(c);
 	};
 	/**
+	 * @name pi.classDel
 	 * @example pi.classDel( pi('#id'), 'class' )
 	 */
 	pi.classDel = function (elm, c) {
@@ -103,6 +113,7 @@ if (feature.classList) {
 		elm.classList.remove(c);
 	};
 	/**
+	 * @name pi.classHas
 	 * @example pi.classHas( pi('#id'), 'class' )
 	 */
 	pi.classHas = function (elm, c) {
@@ -113,6 +124,7 @@ if (feature.classList) {
 		elm.classList.contains(c);
 	};
 	/**
+	 * @name pi.classToggle
 	 * @example pi.classToggle( pi('#id'), 'class' )
 	 */
 	pi.classToggle = function (elm, c) {
@@ -123,8 +135,10 @@ if (feature.classList) {
 		elm.classList.toggle(c);
 	};
 }
+
 /**
- *
+ * @name pii.forEach
+ * @example pii.forEach(elms, 'classAdd', 'class');
  */
 pii.forEach = function (elms, operation) {
 	"use strict";
@@ -145,21 +159,21 @@ pii.forEach = function (elms, operation) {
 };
 
 /**
- * alias
+ * @name pii.classAdd
  */
 pii.classAdd = function (elms, c) {
 	"use strict";
 	pii.forEach(elms, 'classAdd', c);
 };
 /**
- * alias
+ * @name pii.classDel
  */
 pii.classDel = function (elms, c) {
 	"use strict";
 	pii.forEach(elms, 'classDel', c);
 };
 /**
- * alias
+ * @name pii.classToggle
  */
 pii.classToggle = function (elms, c) {
 	"use strict";
@@ -167,6 +181,7 @@ pii.classToggle = function (elms, c) {
 };
 
 /**
+ * @name pi.append
  * @param {String} elm elm to append
  * @param {String} target target to append
  * @param {String} pos top|down|append
@@ -187,86 +202,14 @@ pi.append = function (elm, target, pos) {
 		break;
 	}
 };
-
-/**
- * @example pi.ready( callback );
- */
-pi.ready = function (callback) {
-	"use strict";
-	document.addEventListener("DOMContentLoaded", callback(), false);
-};
-
 /**
  * dataset use
  *
- * pii('#try .sub')[0].dataset
- *
+ * @example pii('#try .sub')[0].dataset
  */
 
-// -- pub/sub notifier
-
 /**
- * simple pub sub
- */
-var topics = {};
-/**
- * @param {String} topic
- * @param {Array} args arguments
- */
-pi.pub = function (topic, args) {
-	"use strict";
-	if (topics[topic]) {
-		var thisTopic = topics[topic],
-			thisArgs = args || [],
-			k,
-			j;
-		for (k = 0, j = thisTopic.length; k < j; k++) {
-			pi.debug('PUB', topic);
-			thisTopic[k].apply(pi, thisArgs);
-		}
-	}
-};
-/**
- * @param {String} topic
- * @param {Object} callback
- */
-pi.sub = function (topic, callback) {
-	"use strict";
-	if (!topics[topic]) {
-		topics[topic] = [];
-	}
-	pi.debug('SUB', topic);
-	topics[topic].push(callback);
-	return {
-		topic: topic,
-		callback: callback
-	};
-};
-/**
- * @param {String} handle.topic
- * @param {Object} handle.callback
- */
-pi.unsub = function (handle) {
-	"use strict";
-	var topic = handle.topic,
-		thisTopic = [],
-		y,
-		w;
-	if (topics[topic]) {
-		thisTopic = topics[topic];
-		for (y = 0, w = thisTopic.length; y < w; y++) {
-			if (thisTopic[y] === handle.callback) {
-				pi.debug('DEL', topic);
-				thisTopic.splice(y, 1);
-			}
-		}
-	}
-};
-
-// -- storage
-
-/**
- * local storage
+ * @name pi.storage
  */
 pi.storage = (function () {
 	"use strict";
@@ -332,9 +275,8 @@ pi.storage = (function () {
 	};
 }());
 
-// -- ajax
-
 /**
+ * @name pi.ajax
  * @param {Object} 
  * @param {String} params.type
  * @param {String} params.url
@@ -368,8 +310,94 @@ pi.ajax = function (params) {
 };
 
 
-// -- lazy from echo
 
+//
+//
+// -- utils --
+// pub/sub/unsub, lazyload, route
+//
+//
+
+
+
+/*!
+ *
+ *
+ * simple pub sub
+ *
+ *
+ */
+
+var topics = {};
+/**
+ * @name pi.pub
+ * @param {String} topic
+ * @param {Array} args arguments
+ */
+pi.pub = function (topic, args) {
+	"use strict";
+	if (topics[topic]) {
+		var thisTopic = topics[topic],
+			thisArgs = args || [],
+			k,
+			j;
+		for (k = 0, j = thisTopic.length; k < j; k++) {
+			pi.debug('PUB', topic);
+			thisTopic[k].apply(pi, thisArgs);
+		}
+	}
+};
+/**
+ * @name pi.sub
+ * @param {String} topic
+ * @param {Object} callback
+ */
+pi.sub = function (topic, callback) {
+	"use strict";
+	if (!topics[topic]) {
+		topics[topic] = [];
+	}
+	pi.debug('SUB', topic);
+	topics[topic].push(callback);
+	return {
+		topic: topic,
+		callback: callback
+	};
+};
+/**
+ * @name pi.unsub
+ * @param {String} handle.topic
+ * @param {Object} handle.callback
+ */
+pi.unsub = function (handle) {
+	"use strict";
+	var topic = handle.topic,
+		thisTopic = [],
+		y,
+		w;
+	if (topics[topic]) {
+		thisTopic = topics[topic];
+		for (y = 0, w = thisTopic.length; y < w; y++) {
+			if (thisTopic[y] === handle.callback) {
+				pi.debug('DEL', topic);
+				thisTopic.splice(y, 1);
+			}
+		}
+	}
+};
+
+
+/*!
+ *
+ *
+ * lazy load
+ *
+ *
+ */
+
+/**
+ * @name pii.lazyload
+ */
 pii.lazyload = (function (global, document) {
 	'use strict';
 	/**
@@ -460,7 +488,6 @@ pii.lazyload = (function (global, document) {
 			global.addEventListener('scroll', _throttle, false);
 			global.addEventListener('load', _throttle, false);
 		};
-
 	/**
 	 * return Public methods
 	 * @returns {Object}
@@ -469,9 +496,16 @@ pii.lazyload = (function (global, document) {
 		init: init,
 		render: _pollImages
 	};
-
 })(this, document);
 
+
+/*!
+ *
+ *
+ * route
+ *
+ *
+ */
 
 /**
  * @name pi.route 
@@ -517,5 +551,6 @@ pi.route = (function () {
 		}
 	};
 }());
+
 
 // -- eof

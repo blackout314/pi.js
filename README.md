@@ -74,6 +74,17 @@ pi.ajax( {
 ```javascript
 var ok = function (action,arg1,arg2) { console.log(arg1); };
 pi.route.add('news', ok);	-> hash ->	#/news/arg1/arg2
+
+pi.route.bundle( [
+	{
+		route:'news',
+		callback:function(){ alert('news'); }
+	},
+	{
+		route:'users',
+		callback:function(){ alert('users'); }
+	}
+] )
 ```
 
 ##Why
