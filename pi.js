@@ -506,7 +506,8 @@ pi.route = (function () {
 			routes.push(rotta);
 		},
 		bundle: function (routes) {
-			var j = 0;
+			var j = 0,
+				r = {};
 			for(j=0; r=routes[j], j < routes.length; j++) {
 				this.add( r.route, r.callback );
 			}
