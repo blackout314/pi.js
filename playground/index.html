@@ -34,6 +34,19 @@
 					pi.classAdd(t.target,'over');
 				};
 				pii('#try .sub')[0].on('mouseover',listener);
+
+				pi.route.bundle( [
+					{
+						route:'news',
+						callback:function(){ alert('news'); }
+					},
+					{
+						route:'users',
+						callback:function(){ alert('users'); }
+					}
+				] );
+				pi.route.start('news');
+
 			});
 		</script>
 	</body>

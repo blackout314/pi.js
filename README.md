@@ -74,7 +74,7 @@ pi.ajax( {
 ### Routes 
 ```javascript
 var ok = function (action,arg1,arg2) { console.log(arg1); };
-pi.route.add('news', ok);	-> hash ->	#/news/arg1/arg2
+pi.route.add('news', ok);	-> hash ->	#!/news/arg1/arg2
 
 pi.route.bundle( [
 	{
@@ -82,8 +82,8 @@ pi.route.bundle( [
 		callback:function(){ alert('news'); }
 	},
 	{
-		route:'users',
-		callback:function(){ alert('users'); }
+		route:'defaultAction',
+		callback:function(){ alert('defaultAction'); }
 	}
 ] );
 pi.route.start('defaultAction');

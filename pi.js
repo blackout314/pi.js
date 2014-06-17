@@ -517,7 +517,7 @@ pi.route = (function () {
 	"use strict";
 	var routes = [];
 	function process (action) {
-		var hash = location.hash.substr(2).split('/'),	//remove #/
+		var hash = location.hash.substr(3).split('/'),	//remove #!/
 			i = 0,
 			r = {};
 		if (typeof(action) === 'string' && hash[0] === '') {
