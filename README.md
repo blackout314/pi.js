@@ -89,6 +89,19 @@ pi.route.bundle( [
 pi.route.start('defaultAction');
 ```
 
+### Event Listeners Manager
+```javascript
+var a = function(){ console.log('a'); };
+var b = function(){ console.log('b'); };
+
+pi.event.on( '#one', 'click', a );
+pi.event.on( '#one', 'click', b );
+
+// when click on #one -> print a \n b
+
+pi.event.purge( '#one', 'click' ); // remove all click listeners
+```
+
 ##Why
 In the amazing javascript world we'll found many great framework, but this is the _mine_.
 I hate IE and i have no plans to support it.
