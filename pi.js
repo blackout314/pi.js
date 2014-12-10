@@ -328,7 +328,10 @@ pi.ajax = function (params) {
  *
  */
 
-var topics = {};
+/**
+ * @name pi.topics
+ */
+pi.topics = {};
 /**
  * @name pi.pub
  * @param {String} topic
@@ -336,8 +339,8 @@ var topics = {};
  */
 pi.pub = function (topic, args) {
 	"use strict";
-	if (topics[topic]) {
-		var thisTopic = topics[topic],
+	if (pi.topics[topic]) {
+		var thisTopic = pi.topics[topic],
 			thisArgs = args || [],
 			k,
 			j;
@@ -354,11 +357,11 @@ pi.pub = function (topic, args) {
  */
 pi.sub = function (topic, callback) {
 	"use strict";
-	if (!topics[topic]) {
-		topics[topic] = [];
+	if (!pi.topics[topic]) {
+		pi.topics[topic] = [];
 	}
 	pi.debug('SUB', topic);
-	topics[topic].push(callback);
+	pi.topics[topic].push(callback);
 	return {
 		topic: topic,
 		callback: callback
@@ -375,8 +378,8 @@ pi.unsub = function (handle) {
 		thisTopic = [],
 		y,
 		w;
-	if (topics[topic]) {
-		thisTopic = topics[topic];
+	if (pi.topics[topic]) {
+		thisTopic = pi.topics[topic];
 		for (y = 0, w = thisTopic.length; y < w; y++) {
 			if (thisTopic[y] === handle.callback) {
 				pi.debug('DEL', topic);
