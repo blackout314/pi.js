@@ -18,15 +18,6 @@ pi('#id')
 pii('.class')
 ```
 
-### Listener
-```javascript
-var listener = function(e) { console.log(e); };
-pi('#try').on('click',listener);
-pi('#try').rm('click',listener);
-pii('.class').on('click',listener);
-pii('#try .sub')[0].on('mouseover',listener);
-```
-
 ### Class manipulation
 ```javascript
 pi.classAdd('#try', 'newClass');
@@ -39,44 +30,72 @@ pi.ready(function(){
 });
 ```
 
-### Pub/Sub Notifier
+
+### Listener
+```javascript
+var listener = function(e) { console.log(e); };
+pi('#try').on('click',listener);
+pi('#try').rm('click',listener);
+pii('.class').on('click',listener);
+pii('#try .sub')[0].on('mouseover',listener);
+```
+
+#### Event Listeners Manager
+```javascript
+var a = function(){ console.log('a'); };
+var b = function(){ console.log('b'); };
+
+pi.E.on( '#one', 'click', a );
+pi.E.on( '#one', 'click', b );
+
+// when click on #one -> print a \n b
+
+// remove all click listeners
+
+pi.E.purge( '#one', 'click' ); 
+```
+
+
+### Topics Pub/Sub Notifier
 ```javascript
 var callback = function(a){ console.log('LOG: '+a); };
-pi.sub('NOTICE', callback);
-
-pi.pub('NOTICE',['hello']);
-pi.unsub({'topic':'NOTICE','callback':callback});
-pi.pub('NOTICE',['hello']);
+pi.T.sub('NOTICE', callback);
+pi.T.pub('NOTICE',['hello']);
+pi.T.unsub({'topic':'NOTICE','callback':callback});
+pi.T.pub('NOTICE',['hello']);
 ```
+
 
 ### LocalStorage
 ```javascript
-pi.storage.set('key','value');
+pi.S.set('key','value');
 ```
 
-### Namespace on LocalStorage
+#### Namespace on LocalStorage
 ```javascript
-var hello = pi.storage.namespace('hello');
+var hello = pi.S.namespace('hello');
 hello.set('key','value');	// set key
 hello.get('key');			// get key
 ```
 
+
 ### AjaxCall
 ```javascript
 var ok = function (data) { console.log(data); };
-pi.ajax( {
+pi.A({
     type:'GET',
     url:'example.json',
     success:ok
-} );
+});
 ```
+
 
 ### Routes 
 ```javascript
 var ok = function (action,arg1,arg2) { console.log(arg1); };
-pi.route.add('news', ok);	-> hash ->	#!/news/arg1/arg2
+pi.R.add('news', ok);	-> hash ->	#!/news/arg1/arg2
 
-pi.route.bundle( [
+pi.R.bundle( [
 	{
 		route:'news',
 		callback:function(){ alert('news'); }
@@ -86,37 +105,27 @@ pi.route.bundle( [
 		callback:function(){ alert('defaultAction'); }
 	}
 ] );
-pi.route.start('defaultAction');
+pi.R.start('defaultAction');
 ```
 
-### Event Listeners Manager
-```javascript
-var a = function(){ console.log('a'); };
-var b = function(){ console.log('b'); };
 
-pi.event.on( '#one', 'click', a );
-pi.event.on( '#one', 'click', b );
+## Questions
 
-// when click on #one -> print a \n b
-
-pi.event.purge( '#one', 'click' ); // remove all click listeners
-```
-
-##Why
+###Why
 In the amazing javascript world we'll found many great framework, but this is the _mine_.
 I hate IE and i have no plans to support it.
 IE is a ugly program (i call him virus/malware).
 
-##Who
+###Who
 I'm a humble javascript coder
 
-##What
+###What
 Make website smart and amazing
 
-##Where
+###Where
 Github!
 
-##Browser support:
+###Browser support:
 - Firefox 3.5+
 - Opera 9+
 - Safari 4+

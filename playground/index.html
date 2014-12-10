@@ -17,15 +17,14 @@
 		</div>
 		
 		<script>
-			// pub sub messages
+			// -------- pub sub messages
 			var callback = function(a){ console.log('LOG: '+a); };
-			pi.sub('NOTICE', callback);
+			pi.T.sub('NOTICE', callback);
+			pi.T.pub('NOTICE',['hello']);
+			pi.T.unsub({'topic':'NOTICE','callback':callback});
+			pi.T.pub('NOTICE',['hello']);
 
-			pi.pub('NOTICE',['hello']);
-			pi.unsub({'topic':'NOTICE','callback':callback});
-			pi.pub('NOTICE',['hello']);
-
-			// other playground
+			// -------- other playground
 			pi.ready(function(){
 				pi('#try').on('click',function(){
 					console.log('x');
@@ -35,7 +34,9 @@
 				};
 				pii('#try .sub')[0].on('mouseover',listener);
 
-				pi.route.bundle( [
+
+				// -------- route
+				pi.R.bundle( [
 					{
 						route:'news',
 						callback:function(){ alert('news'); }
@@ -45,7 +46,7 @@
 						callback:function(){ alert('users'); }
 					}
 				] );
-				pi.route.start('news');
+				pi.R.start('news');
 
 			});
 		</script>
