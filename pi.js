@@ -261,7 +261,7 @@ pi.storage = (function () {
 		namespace: function (namespace) {
 			return {
 				namespace: namespace + '_',
-				set: function (key,value) {
+				set: function (key, value) {
 					pi.storage.set(this.namespace + key, value);
 				},
 				get: function (key) {
@@ -270,7 +270,7 @@ pi.storage = (function () {
 				del: function (key) {
 					pi.storage.del(this.namespace + key);
 				}
-			}
+			};
 		}
 	};
 }());
@@ -401,6 +401,8 @@ pi.unsub = function (handle) {
 /**
  * @name pii.lazyload
  */
+
+/*jslint nomen: true */
 pii.lazyload = (function (global, document) {
 	'use strict';
 	/**
@@ -478,8 +480,8 @@ pii.lazyload = (function (global, document) {
 			var nodes = pii('[data-echo]'),
 				opts = obj || {},
 				i = 0;
-			offset = parseInt(opts.offset || 0);
-			throttle = parseInt(opts.throttle || 250);
+			offset = parseInt(opts.offset || 0, 10);
+			throttle = parseInt(opts.throttle || 250, 10);
 			callback = opts.callback || callback;
 
 			for (i = 0; i < nodes.length; i++) {
@@ -500,7 +502,7 @@ pii.lazyload = (function (global, document) {
 		render: _pollImages
 	};
 })(this, document);
-
+/*jslint nomen: false */
 
 /*!
  *
@@ -519,14 +521,15 @@ pii.lazyload = (function (global, document) {
 pi.route = (function () {
 	"use strict";
 	var routes = [];
-	function process (action) {
+	function process(action) {
 		var hash = location.hash.substr(3).split('/'),	//remove #!/
 			i = 0,
 			r = {};
-		if (typeof(action) === 'string' && hash[0] === '') {
+		if (typeof (action) === 'string' && hash[0] === '') {
             hash = action.split('/');
 		}
-		for (i=0; r = routes[i], i < routes.length; i++) {
+		for (i = 0; i < routes.length; i++) {
+			r = routes[i];
 			if (r.r === hash[0]) {
 				r.c.apply(pi, hash);
 			}
@@ -548,8 +551,9 @@ pi.route = (function () {
 		bundle: function (routes) {
 			var j = 0,
 				r = {};
-			for(j=0; r=routes[j], j < routes.length; j++) {
-				this.add( r.route, r.callback );
+			for (j = 0; j < routes.length; j++) {
+				r = routes[j];
+				this.add(r.route, r.callback);
 			}
 		},
 		start: function (action) {
@@ -574,38 +578,38 @@ pi.event = (function () {
 		on: function (object, event, callback) {
 			var elm = pi(object);
 
-			if (typeof (this.eventsArray[ object ]) === "undefined" ) {
-				this.eventsArray[ object ] = {};
-				this.fnArray[ object ] = {};
+			if (typeof (this.eventsArray[object]) === "undefined") {
+				this.eventsArray[object] = {};
+				this.fnArray[object] = {};
 			}
-			if (typeof (this.eventsArray[ object ][ event ]) === "undefined" ) {
-				this.eventsArray[ object ][ event ] = [];
-				this.fnArray[ object ][ event ] = [];
+			if (typeof (this.eventsArray[object][event]) === "undefined") {
+				this.eventsArray[object][event] = [];
+				this.fnArray[object][event] = [];
 			}
-			this.eventsArray[ object ][ event ].push( callback.toString() );
-			this.fnArray[ object ][ event ].push( callback );
-			elm.on (event, callback);
+			this.eventsArray[object][event].push(callback.toString());
+			this.fnArray[object][event].push(callback);
+			elm.on(event, callback);
 		},
 		rm: function (object, event, callback) {
-			var elm = pi(object);
-			var io = this.eventsArray[ object ][ event ].indexOf( callback.toString() );
+			var elm = pi(object),
+				io = this.eventsArray[object][event].indexOf(callback.toString());
 			if (io !== -1) {
-				this.eventsArray[ object ][ event ].splice(io, 1);
-				this.fnArray[ object ][ event ].splice(io, 1);
-				elm.rm (event, callback);
+				this.eventsArray[object][event].splice(io, 1);
+				this.fnArray[object][event].splice(io, 1);
+				elm.rm(event, callback);
 			}
 		},
 		purge: function (object, event) {
 			var callback,
 				i,
-				l = this.eventsArray[ object ][ event ].length,
-				elm = pi(object);;
-			for (i=0; i < l; i++) {
-				callback = this.fnArray[ object ][ event ][i];
-				elm.rm (event, callback);
+				l = this.eventsArray[object][event].length,
+				elm = pi(object);
+			for (i = 0; i < l; i++) {
+				callback = this.fnArray[object][event][i];
+				elm.rm(event, callback);
 			}
-			this.eventsArray[ object ][ event ] = [];
-			this.fnArray[ object ][ event ] = [];
+			this.eventsArray[object][event] = [];
+			this.fnArray[object][event] = [];
 		}
 	};
 }());
