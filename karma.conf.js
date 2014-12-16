@@ -4,7 +4,7 @@ module.exports = function(config) {
 	singleRun: true,
     basePath: '.',
     frameworks: ['qunit'],
-	browsers: ['PhantomJS'],
+	browsers: ['Firefox'],
 	files: [ "pi.js", "tests/**.js" ]
   });
 };
