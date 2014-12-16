@@ -1,8 +1,9 @@
 module.exports = function(grunt) {
 
-    // Project configuration.
+    // ---- Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+		// ---- uglify
         uglify: {
           options: {
             banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
@@ -12,6 +13,13 @@ module.exports = function(grunt) {
             dest: 'build/<%= pkg.name %>.min.js'
           }
         },
+		// ---- jshint
+		jshint: {
+			all: {
+				"src": "pi.js"
+			}
+		},
+		// ---- replace
         replace: {
             dist: {
                 options: {
@@ -33,7 +41,12 @@ module.exports = function(grunt) {
                     }
                 ]
           }
-        }
+        },
+		karma: {
+			unit: {
+				configFile: "karma.conf.js"
+			}
+		}
     });
       
     grunt.registerTask('banner', function() {
@@ -48,8 +61,10 @@ module.exports = function(grunt) {
   // Load the plugin that provides the "uglify" task.
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-replace');
+  grunt.loadNpmTasks('grunt-karma');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
 
   // Default task(s).
-  grunt.registerTask('default', ['banner','uglify','replace']);
+  grunt.registerTask('default', ['banner','jshint','karma','uglify','replace']);
 
 };
