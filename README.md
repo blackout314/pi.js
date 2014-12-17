@@ -30,6 +30,13 @@ pi.ready(function(){
 });
 ```
 
+### Html Manipulation
+```javascript
+// append child to
+pi.H.append( pi('#u'), pi('#d') );
+// remove child
+pi.H.remove( pi('#u') );
+```
 
 ### Listener
 ```javascript
