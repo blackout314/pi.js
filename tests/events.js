@@ -1,7 +1,6 @@
 module("tests", {
 	setup: function () {
 		pi('body').innerHTML = '<div id="test"></div>';
-		//$().appendTo(document.body);
 	},
 	teardown: function () {
 		pi.H.remove('#test');
