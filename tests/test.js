@@ -7,4 +7,5 @@ module("tests", {
 
 test('events test', function(){
 	ok( typeof(pi.E) === 'object' );
+	var spy = sinon.spy();
 });

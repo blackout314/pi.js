@@ -3,7 +3,7 @@ module.exports = function(config) {
 	autoWatch: false,
 	singleRun: true,
     basePath: '.',
-    frameworks: ['qunit'],
+    frameworks: ['qunit','sinon'],
 	browsers: ['Firefox'],
 	files: [ "pi.js", "tests/**.js" ]
   });
