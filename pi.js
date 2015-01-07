@@ -75,27 +75,26 @@ pi.ready = function (callback) {
 
 // -------- Config
 
-pi.C = {};
-
-pi.C.feature = {
+pi.C = {
 	"version" : "@@VERSION_NUMBER",
 	"DEBUG" : true,
-	"addEventListener" : !!window.addEventListener,			// eventListener
-	"querySelectorAll" : !!document.querySelectorAll,		// querySelector
-	"classList" : !!document.documentElement.classList		// classList
+	feature : {
+		"addEventListener" : !!window.addEventListener,			// eventListener
+		"querySelectorAll" : !!document.querySelectorAll,		// querySelector
+		"classList" : !!document.documentElement.classList		// classList
+	}
 };
 
 // -------- Debug
 
-pi.D = {};
-
-pi.D.debug = function (action, message) {
-	"use strict";
-	if (pi.C.feature.DEBUG) {
-		console.debug('[' + action + '] ' + message);
+pi.D = {
+	debug : function (action, message) {
+		"use strict";
+		if (pi.C.DEBUG) {
+			console.debug('[' + action + '] ' + message);
+		}
 	}
 };
-
 
 // -------- Html
 
