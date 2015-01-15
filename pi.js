@@ -237,7 +237,7 @@ if (pi.C.feature.classList) {
 		if (typeof (elm) === 'string') {
 			elm = pi(elm);
 		}
-		elm.classList.contains(c);
+		return elm.classList.contains(c);
 	};
 	/**
 	 * @name pi.classToggle
