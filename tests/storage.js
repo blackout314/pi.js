@@ -23,3 +23,10 @@ test('storage manual', function(){
 	pi.S.del('k');
 	ok( pi.S.get('k') === null );
 });
+
+test('storage total delete', function(){
+	pi.S.set('k','v');
+	ok( pi.S.get('k') === 'v' );
+	pi.S.del();
+	ok( pi.S.get('k') === null );
+});
