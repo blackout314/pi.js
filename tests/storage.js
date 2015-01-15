@@ -16,3 +16,10 @@ test('storage namespace', function(){
 	h.del('k');
 	ok( h.get('k') === null );
 });
+
+test('storage manual', function(){
+	pi.S.set('k','v');
+	ok( pi.S.get('k') === 'v' );
+	pi.S.del('k');
+	ok( pi.S.get('k') === null );
+});
