@@ -11,8 +11,13 @@ test('dom test', function(){
 	ok( typeof(pi.classAdd) === 'function' );
 });
 
-test('dom ok', function(){
+test('dom classAdd', function(){
 	var test = pi('#test');
 	pi.classAdd(test,'prova');
 	ok( pi.classHas(test,'prova') === true );
+});
+
+test('dom H remove', function(){
+	pi.H.remove('#d1','#test');
+	ok( pi('#d1') === null );
 });

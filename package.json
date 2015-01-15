@@ -11,6 +11,7 @@
 	"karma-sinon": "~1.0",
 	"karma-phantomjs-launcher": "~0.1",
 	"karma-qunit": "~0.1",
+	"karma-coverage": "~0.1",
 	"grunt-karma": "~0.6"
   }
 }
