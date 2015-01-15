@@ -6,6 +6,17 @@
 var pi = document.querySelector.bind(document),
 	pii = document.querySelectorAll.bind(document);
 
+/*
+experimental function for 0.3
+var _pi = function(selector){
+	if (selector.indexOf('#') === -1 && selector.indexOf(' ') === -1) {
+		return document.querySelector.bind(selector);
+	} else {
+		return document.getElementById(selector.substr(1));
+	}
+};
+*/
+
 /**
  * @name pi
  * @example pi('#id')
