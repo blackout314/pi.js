@@ -13,4 +13,6 @@ test('storage namespace', function(){
 	var h = pi.S.namespace('test');
 	h.set('k','v');
 	ok( h.get('k') === 'v' );
+	h.del('k');
+	ok( h.get('k') === null );
 });
