@@ -6,13 +6,14 @@ module.exports = function(config) {
     frameworks: ['qunit','sinon'],
 	reporters: ['progress', 'coverage'],
 	preprocessors: {
-      'pi.js': ['coverage']
+		'src/pi.js': ['coverage'],
+		'src/pi.lazyload.js': ['coverage']
     },
 	coverageReporter: {
       type : 'html',
       dir : 'coverage/'
     },
 	browsers: ['Firefox'],
-	files: [ "pi.js", "tests/**.js" ]
+	files: [ "src/*.js", "tests/**.js" ]
   });
 };

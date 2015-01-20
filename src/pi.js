@@ -359,7 +359,7 @@ pi.S = (function () {
 
 /**
  * @name pi.A
- * @param {Object} 
+ * @param {Object}
  * @param {String} params.type
  * @param {String} params.url
  * @param {Function} params.success
