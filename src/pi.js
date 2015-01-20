@@ -3,14 +3,7 @@
 /*global window,document,Element,NodeList,alert,console,XMLHttpRequest,localStorage,Exception,setTimeout,clearTimeout */
 /*jslint plusplus: true */
 
-var pi = function(selector){
-		"use strict";
-		if (/^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]*))$/.test(selector)) {
-			return document.getElementById(selector.substr(1));
-		} else {
-			return document.querySelector(selector);
-		}
-	},
+var pi = document.querySelector.bind(document),
 	pii = document.querySelectorAll.bind(document);
 
 /**

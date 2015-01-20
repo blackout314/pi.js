@@ -7,9 +7,7 @@ pi.js
 *modern minimalist vanilla javascript framework*
 
 ## JSPerf
-* http://jsperf.com/jquery-vs-pijs (dead)
-* http://jsperf.com/jquery-vs-pijs-2 (dead)
-* http://jsperf.com/jquery-vs-pijs-0-2
+* http://jsperf.com/jquery-vs-pijs-0-2/5
 
 
 ## Example
