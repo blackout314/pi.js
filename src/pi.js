@@ -5,7 +5,7 @@
 
 var pi = function(selector){
 		"use strict";
-		if (selector.charAt(0) !== '#' && selector.indexOf('#') > -1 && selector.indexOf(' ') === -1) {
+		if (selector.charAt(0) === '#' && selector.indexOf(' ') === -1) {
 			return document.getElementById(selector.substr(1));
 		} else {
 			return document.querySelector(selector);
