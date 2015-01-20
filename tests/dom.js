@@ -1,6 +1,6 @@
 module("tests", {
 	setup: function () {
-		pi('body').innerHTML = '<div id="test"> <div class="o" id="d1">1</div> <div class="o" id="d2">2</div> </div>  <div id="append">append</div> ';
+		pi('body').innerHTML = '<div id="test" class="testi"> <div class="o" id="d1">1</div> <div class="o" id="d2">2</div> </div>  <div id="append">append</div> ';
 	},
 	teardown: function () {
 		pi.H.remove('#test');
@@ -52,7 +52,7 @@ test('dom classAdd classDel classToggle forEach', function(){
 
 test('dom H append', function(){
 	pi.H.append('#append','#test');
-	ok( pi('#test #append') !== null );
+	ok( pi('body div #append') !== null );
 
 	pi.H.append('#append','#test', 'top');
 	ok( pi('body div:nth-child(1)').id === 'append' );

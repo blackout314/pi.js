@@ -3,19 +3,15 @@
 /*global window,document,Element,NodeList,alert,console,XMLHttpRequest,localStorage,Exception,setTimeout,clearTimeout */
 /*jslint plusplus: true */
 
-var pi = document.querySelector.bind(document),
+var pi = function(selector){
+		"use strict";
+		if (selector.charAt(0) !== '#' && selector.indexOf('#') > -1 && selector.indexOf(' ') === -1) {
+			return document.getElementById(selector.substr(1));
+		} else {
+			return document.querySelector(selector);
+		}
+	},
 	pii = document.querySelectorAll.bind(document);
-
-/*
-experimental function for 0.3
-var _pi = function(selector){
-	if (selector.indexOf('#') === -1 && selector.indexOf(' ') === -1) {
-		return document.querySelector.bind(selector);
-	} else {
-		return document.getElementById(selector.substr(1));
-	}
-};
-*/
 
 /**
  * @name pi
