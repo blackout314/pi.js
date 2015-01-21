@@ -124,7 +124,14 @@ pi.R.bundle( [
 pi.R.start('defaultAction');
 ```
 
+## AddOn
 
+### Lazyload 
+
+[vanilla-lazyload](https://github.com/verlok/lazyload)
+```javascript
+var l = new Lazyload(); // see doc in libs page
+```
 ## Questions
 
 ###Why

@@ -2,18 +2,20 @@
 	<head>
 		<title>playground</title>
 		<script src="../src/pi.js" type="application/javascript"></script>
-		<script src="../models/class.items.js" type="application/javascript"></script>
 	</head>
 	<body>
 		<div id="one">
 			ONE
-			<img src="" data-echo="http://a.dryicons.com/images/icon_sets/colorful_stickers_part_4_icons_set/png/256x256/save.png" />
 		</div>
+		<div style="height:500px;">space</div>
 		<div id="two">TWO</div>
 		<div id="try">
-			<div class="sub" data-echo="http://a.dryicons.com/images/icon_sets/colorful_stickers_part_4_icons_set/png/256x256/save.png">1</div>
+			<div class="sub">1</div>
 			<div class="sub">2</div>
-			<div class="sub">3</div>
+			<div class="sub">
+				3
+				<img data-original="http://a.dryicons.com/images/icon_sets/colorful_stickers_part_4_icons_set/png/256x256/save.png" />
+			</div>
 		</div>
 		
 		<script>
@@ -39,11 +41,11 @@
 				pi.R.bundle( [
 					{
 						route:'news',
-						callback:function(){ alert('news'); }
+						callback:function(){ console.log('PAGE news'); }
 					},
 					{
 						route:'users',
-						callback:function(){ alert('users'); }
+						callback:function(){ console.log('PAGE users'); }
 					}
 				] );
 				pi.R.start('news');

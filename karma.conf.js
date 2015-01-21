@@ -6,8 +6,7 @@ module.exports = function(config) {
     frameworks: ['qunit','sinon'],
 	reporters: ['progress', 'coverage'],
 	preprocessors: {
-		'src/pi.js': ['coverage'],
-		'src/pi.lazyload.js': ['coverage']
+		'src/pi.js': ['coverage']
     },
 	coverageReporter: {
       type : 'html',
