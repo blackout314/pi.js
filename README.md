@@ -4,7 +4,7 @@
 pi.js
 =====
 
-*modern minimalist vanilla javascript framework*
+*modern minimalist vanilla javascript framework* in 4.6Kb
 
 ## JSPerf
 * http://jsperf.com/jquery-vs-pijs-0-2/5
