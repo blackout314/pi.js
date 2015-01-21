@@ -33,8 +33,10 @@ pi.ready(function(){
 ```javascript
 // append child to
 pi.H.append( pi('#u'), pi('#d') );
+pi.H.append( '#u', '#d' );
 // remove child
 pi.H.remove( pi('#u') );
+pi.H.remove( '#u' );
 ```
 
 ### Listener
@@ -56,8 +58,10 @@ pi.E.on( '#one', 'click', b );
 
 // when click on #one -> print a \n b
 
-// remove all click listeners
+// remove a listener
+pi.E.rm( '#one', 'click', b );
 
+// remove all click listeners
 pi.E.purge( '#one', 'click' ); 
 ```
 
@@ -75,6 +79,12 @@ pi.T.pub('NOTICE',['hello']);
 ### LocalStorage
 ```javascript
 pi.S.set('key','value');
+var value = pi.S.get('key');
+```
+
+#### Cached LocalStorage
+```javascript
+pi.S.cache('key','value', ttl);
 ```
 
 #### Namespace on LocalStorage
