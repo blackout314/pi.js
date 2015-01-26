@@ -6,6 +6,7 @@ pi.js
 
 *modern minimalist vanilla javascript framework* in 4.6Kb
 
+
 ## JSPerf
 * http://jsperf.com/jquery-vs-pijs-0-2/5
 
@@ -124,6 +125,7 @@ pi.R.bundle( [
 pi.R.start('defaultAction');
 ```
 
+
 ## AddOn
 
 ### Lazyload 
@@ -132,23 +134,25 @@ pi.R.start('defaultAction');
 ```javascript
 var l = new Lazyload(); // see doc in libs page
 ```
+
+
 ## Questions
 
-###Why
+### Why
 In the amazing javascript world we'll found many great framework, but this is the _mine_.
 I hate IE and i have no plans to support it.
 IE is a ugly program (i call him virus/malware).
 
-###Who
+### Who
 I'm a humble javascript coder
 
-###What
+### What
 Make website smart and amazing
 
-###Where
+### Where
 Github!
 
-###Browser support:
+### Browser support:
 - Firefox 3.5+
 - Opera 9+
 - Safari 4+
