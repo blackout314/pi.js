@@ -1,0 +1,4 @@
+ui: qunit
+browsers:
+    - name: chrome
+      version: latest

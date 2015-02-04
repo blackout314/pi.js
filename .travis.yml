@@ -7,3 +7,7 @@ before_script:
 - npm rebuild
 - npm install -g grunt-cli
 script: grunt default
+env:
+  global:
+  - secure: AhTiE3wiPkfVsyo474yF/6Rx+fwqnfSpIrN1VQRNmf1R58uq8WplWNZwSKHECWahkxOC6KFL9pMt0e6L0Hu1PBJT791Yy8SD0Ax/9gK27ac7xpiMcW3lXIMSqSEams/2hWTuxVoE34Iapr7/RPTOPcbV8BkBWQ+oSVfiwajcks8=
+  - secure: kpU6Dgdc3ARAE4odMO3Uvsor4YPYJtydHurWPMHsG8oA0XB9c1wi8aQ0o07oGW87KYIKaw7S7bBpZgmfzQziwt+LlFxNPivChbR/e9WX/k4NxqXEVxVjtJXAoJYY5JnHoktm4dzSeTAUnWqzfFHICeIFfpQ33Rs7JQb3U73kP1g=

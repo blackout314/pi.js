@@ -13,6 +13,10 @@
     "karma-coverage": "~0.1",
     "karma-phantomjs-launcher": "~0.1",
     "karma-qunit": "~0.1",
-    "karma-sinon": "~1.0"
+    "karma-sinon": "~1.0",
+    "zuul": "^1.17.1"
+  },
+  "scripts": {
+    "test": "zuul -- test.js"
   }
 }
