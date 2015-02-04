@@ -9,7 +9,7 @@ module.exports = function(config) {
 		'src/pi.js': ['coverage']
     },
 	coverageReporter: {
-      type : 'html',
+      type : 'lcov',
       dir : 'coverage/'
     },
 	browsers: ['Firefox'],

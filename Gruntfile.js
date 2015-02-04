@@ -46,7 +46,16 @@ module.exports = function(grunt) {
 			unit: {
 				configFile: "karma.conf.js"
 			}
-		}
+		},
+        coveralls: {
+            options: {
+                debug: true,
+                coverageDir: 'coverage',
+                dryRun: false,
+                force: true,
+                recursive: true
+            }
+        }
     });
       
     grunt.registerTask('banner', function() {
@@ -62,9 +71,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-replace');
   grunt.loadNpmTasks('grunt-karma');
+  grunt.loadNpmTasks('grunt-karma-coveralls');
   grunt.loadNpmTasks('grunt-contrib-jshint');
 
   // Default task(s).
-  grunt.registerTask('default', ['banner','jshint','karma','uglify','replace']);
+  grunt.registerTask('default', ['banner','jshint','karma','uglify','replace','coveralls']);
 
 };
