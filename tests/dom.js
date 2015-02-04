@@ -60,3 +60,9 @@ test('dom H append', function(){
 	pi.H.append('#append','#test', 'down');
 	ok( pi('body div:nth-child(1)').id !== 'append' ); // #TODO more tests
 });
+
+test('dom foreach', function() {
+    var result = pii.forEach('#not', 'classAdd', 'class');
+    console.log(result);
+    ok( result === false );
+});
