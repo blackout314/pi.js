@@ -79,9 +79,10 @@ pi.C = {
 	"version" : "@@VERSION_NUMBER",
 	"DEBUG" : true,
 	feature : {
-		"addEventListener" : !!window.addEventListener,			// eventListener
-		"querySelectorAll" : !!document.querySelectorAll,		// querySelector
-		"classList" : !!document.documentElement.classList		// classList
+        "srcSetSupported" : typeof(new Image().srcset)!=='undefined',     // srcset supported?
+		"addEventListener" : !!window.addEventListener,                   // eventListener
+		"querySelectorAll" : !!document.querySelectorAll,                 // querySelector
+		"classList" : !!document.documentElement.classList                // classList
 	}
 };
 
