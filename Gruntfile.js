@@ -55,6 +55,22 @@ module.exports = function(grunt) {
                 force: true,
                 recursive: true
             }
+        },
+        jsinspect: {
+            examples: {
+                options: {
+                    threshold:   30,
+                    diff:        true,
+                    identifiers: false,
+                    failOnMatch: true,
+                    suppress:    100,
+                    reporter:    'default'
+                },
+                src: [
+                    'src/**/*.js',
+                    '!**/node_modules/**'
+                ]
+            }
         }
     });
       
@@ -73,8 +89,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-karma-coveralls');
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-jsinspect');
 
   // Default task(s).
-  grunt.registerTask('default', ['banner','jshint','karma','uglify','replace','coveralls']);
+  grunt.registerTask('default', ['banner','jshint','karma','uglify','replace','jsinspect','coveralls']);
+  grunt.registerTask('localbuild', ['banner','jshint','karma','uglify','replace','jsinspect']);
+  grunt.registerTask('check', ['banner','jshint','jsinspect','karma']);
 
 };

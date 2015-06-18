@@ -39,29 +39,27 @@ Element.prototype.on = Element.prototype.addEventListener;
  */
 Element.prototype.rm = Element.prototype.removeEventListener;
 
+NodeList.prototype.cycle = function (event, fn, action) {
+    "use strict";
+	var i = 0,
+		a;
+	for (i = 0; i < this.length; i++) {
+		this.item(i)[action](event, fn, false);
+	}
+};
 /**
  * @example pii('.class').on('click', callback)
  */
 NodeList.prototype.on = function (event, fn) {
-	"use strict";
-	var i = 0,
-		a;
-	for (i = 0; i < this.length; i++) {
-		this.item(i).addEventListener(event, fn, false);
-	}
-	/* while ((a = this[i++]) !== undefined) { a.addEventListener(event, fn, false); } */
+    "use strict";
+	NodeList.prototype.cycle(event, fn, 'addEventListener');
 };
 /**
  * @example pii('.class').rm('click', callback)
  */
 NodeList.prototype.rm = function (event, fn) {
 	"use strict";
-	var i = 0,
-		a;
-	for (i = 0; i < this.length; i++) {
-		this.item(i).removeEventListener(event, fn, false);
-	}
-	/* while ((a = this[i++]) !== undefined) { a.removeEventListener(event, fn, false); } */
+    NodeList.prototype.cycle(event, fn, 'removeEventListener');
 };
 
 /**
@@ -79,7 +77,7 @@ pi.C = {
 	"version" : "@@VERSION_NUMBER",
 	"DEBUG" : true,
 	feature : {
-        "srcSetSupported" : typeof(new Image().srcset)!=='undefined',     // srcset supported?
+        "srcSetSupported" : typeof (new Image().srcset) !== 'undefined',     // srcset supported?
 		"addEventListener" : !!window.addEventListener,                   // eventListener
 		"querySelectorAll" : !!document.querySelectorAll,                 // querySelector
 		"classList" : !!document.documentElement.classList                // classList
@@ -90,6 +88,7 @@ pi.C = {
 // --------- Tracking Function
 
 pi.track = function () {
+    "use strict";
     /*
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -145,8 +144,10 @@ pi.H.append = function (elm, target, pos) {
  */
 pi.H.remove = function (target, elm) {
 	"use strict";
-	if(!elm) elm = 'body';
-	pi(elm).removeChild( pi(target) );
+	if (!elm) {
+        elm = 'body';
+    }
+	pi(elm).removeChild(pi(target));
 };
 
 // -------- Event
@@ -416,6 +417,7 @@ pi.A = function (params) {
  */
 
 pi.T = (function () {
+    "use strict";
 	var topics = {};
 	return {
 		/**
@@ -424,7 +426,6 @@ pi.T = (function () {
 		 * @param {Array} args arguments
 		 */
 		pub: function (topic, args) {
-			"use strict";
 			if (topics[topic]) {
 				var thisTopic = topics[topic],
 					thisArgs = args || [],
@@ -442,7 +443,6 @@ pi.T = (function () {
 		 * @param {Object} callback
 		 */
 		sub: function (topic, callback) {
-			"use strict";
 			if (!topics[topic]) {
 				topics[topic] = [];
 			}
@@ -459,7 +459,6 @@ pi.T = (function () {
 		 * @param {Object} handle.callback
 		 */
 		unsub: function (handle) {
-			"use strict";
 			var topic = handle.topic,
 				thisTopic = [],
 				y,
