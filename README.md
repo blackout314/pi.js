@@ -5,7 +5,7 @@
 pi.js
 =====
 
-*modern minimalist vanilla javascript framework* in 4.6Kb
+*modern minimalist vanilla javascript library* in 4.8Kb
 
 
 ## JSPerf
@@ -140,7 +140,7 @@ var l = new Lazyload(); // see doc in libs page
 ## Questions
 
 ### Why
-In the amazing javascript world we'll found many great framework, but this is the _mine_.
+In the amazing javascript world we'll found many great framework/library, but this is the _mine_.
 I hate IE and i have no plans to support it.
 IE is a ugly program (i call him virus/malware).
 
@@ -164,6 +164,6 @@ Github!
 - Mobile Firefox
 - Opera Mobile
 - Windows 7.5+
-- IE9+
+- IE9+ (unwanted)
 
 made with <3 from italy
