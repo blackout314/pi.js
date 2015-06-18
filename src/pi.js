@@ -368,6 +368,7 @@ pi.S = (function () {
  * @param {Object}
  * @param {String} params.type
  * @param {String} params.url
+ * @param {Boolean} params.withCredentials activate XMLHR.withCredentials
  * @param {Function} params.success
  * @param {Function} params.error
  * @param {String} [params.params]
@@ -382,6 +383,10 @@ pi.A = function (params) {
 		params.success(cache);
 		return;
 	}
+    if (params.withCredentials) {
+        r.withCredentials = true;
+        delete (params.withCredentials);
+    }
 	r.open(params.type, params.url, true);
 	r.onreadystatechange = function () {
 		if (r.readyState !== 4 || r.status !== 200) {
