@@ -91,6 +91,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-jsinspect');
 
+  // grunt-perfbudget (?)
+  // jsfmt
+  // fixmyjs
+
   // Default task(s).
   grunt.registerTask('default', ['banner','jshint','karma','uglify','replace','jsinspect','coveralls']);
   grunt.registerTask('localbuild', ['banner','jshint','karma','uglify','replace','jsinspect']);
