@@ -3,8 +3,11 @@
  * By John Resig http://ejohn.org/
  * MIT Licensed.
  */
+// TRY CODE
+/*
+DECOMMENT
 (function(){
-	var initializing = false, fnTest = /"xyz"/.test(function(){"xyz";}) ? /\b_super\b/ : /.*/;
+	var initializing = false, fnTest = /"xyz"/.test(function(){"xyz";}) ? /\b_super\b/ : /.* /;
 	// The base Class implementation (does nothing)
 	this.Class = function(){};
 	// Create a new Class that inherits from this class
@@ -77,5 +80,5 @@ var Base = Class.extend({
 	getId: 'Base',
 	getVersion: '0.0.1'
 });
-
+*/
 // -- eof
