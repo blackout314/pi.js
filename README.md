@@ -1,6 +1,7 @@
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 [![Built with TravisCI](https://api.travis-ci.org/blackout314/pi.js.svg)](https://travis-ci.org/)
 [![Coverage Status](https://coveralls.io/repos/blackout314/pi.js/badge.svg)](https://coveralls.io/r/blackout314/pi.js)
+[![Code Climate](https://codeclimate.com/github/blackout314/pi.js/badges/gpa.svg)](https://codeclimate.com/github/blackout314/pi.js)
 
 pi.js
 =====
