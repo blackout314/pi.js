@@ -1,6 +1,7 @@
 /*! -- carlo 'blackout' denaro -- */
 
-/*global window,document,Element,NodeList,alert,console,XMLHttpRequest,localStorage,Exception,setTimeout,clearTimeout */
+
+/*global window,document,Element,NodeList,console,XMLHttpRequest,localStorage,Exception */
 /*jslint plusplus: true */
 
 var pi = document.querySelector.bind(document),
@@ -212,7 +213,7 @@ pii.forEach = function (elms, operation) {
 	if (typeof (elms) === 'string') {
 		elms = pii(elms);
 	}
-	if ((typeof (elms) !== 'Object' && elms.length <= 0) || typeof (operation) !== 'string') {
+	if (typeof (elms) !== 'object' || elms.length <= 0 || typeof (operation) !== 'string') {
 		return false;
 	}
 	args = [ elms[0] ].concat(args);
