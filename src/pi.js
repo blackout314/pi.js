@@ -42,8 +42,7 @@ Element.prototype.rm = Element.prototype.removeEventListener;
 
 NodeList.prototype.cycle = function (event, fn, action) {
     "use strict";
-	var i = 0,
-		a;
+	var i = 0;
 	for (i = 0; i < this.length; i++) {
 		this.item(i)[action](event, fn, false);
 	}
@@ -53,14 +52,14 @@ NodeList.prototype.cycle = function (event, fn, action) {
  */
 NodeList.prototype.on = function (event, fn) {
     "use strict";
-	NodeList.prototype.cycle(event, fn, 'addEventListener');
+	NodeList.prototype.cycle.call(this, event, fn, 'addEventListener');
 };
 /**
  * @example pii('.class').rm('click', callback)
  */
 NodeList.prototype.rm = function (event, fn) {
 	"use strict";
-    NodeList.prototype.cycle(event, fn, 'removeEventListener');
+    NodeList.prototype.cycle.call(this, event, fn, 'removeEventListener');
 };
 
 /**
