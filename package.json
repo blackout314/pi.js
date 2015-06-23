@@ -15,7 +15,8 @@
     "karma-qunit": "~0.1",
     "karma-sinon": "~1.0",
     "zuul": "^1.17.1",
-    "grunt-jsinspect": "^0.4.1"
+    "grunt-jsinspect": "^0.4.1",
+    "grunt-ftp": "~2.0.0"
   },
   "scripts": {
     "test": "zuul -- test.js"

@@ -10,7 +10,7 @@ module.exports = function(grunt) {
           },
           build: {
             src: ['src/*.js'],
-            dest: 'build/<%= pkg.name %>.min.js'
+            dest: 'build/<%= pkg.version %>/<%= pkg.name %>.min.js'
           }
         },
 		// ---- jshint
@@ -36,8 +36,8 @@ module.exports = function(grunt) {
                     { 
                         expand: true, 
                         flatten: true, 
-                        src: ['build/<%= pkg.name %>.min.js'], 
-                        dest: 'build/' 
+                        src: ['build/<%= pkg.version %>/<%= pkg.name %>.min.js'],
+                        dest: 'build/<%= pkg.version %>/'
                     }
                 ]
           }
@@ -71,6 +71,18 @@ module.exports = function(grunt) {
                     '!**/node_modules/**'
                 ]
             }
+        },
+        ftpPut: {
+            options: {
+                host: process.env.HOST,
+                user: process.env.USER,
+                pass: process.env.PASS
+            },
+            upload: {
+                files: {
+                    '/': 'build/<%= pkg.version %>/*'
+                }
+            }
         }
     });
       
@@ -90,14 +102,16 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-karma-coveralls');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-jsinspect');
+  grunt.loadNpmTasks('grunt-ftp');
 
   // grunt-perfbudget (?)
   // jsfmt
   // fixmyjs
 
   // Default task(s).
-  grunt.registerTask('default', ['banner','jshint','karma','uglify','replace','jsinspect','coveralls']);
+  grunt.registerTask('default', ['banner','jshint','karma','uglify','replace','jsinspect','coveralls','ftpPut']);
   grunt.registerTask('localbuild', ['banner','jshint','karma','uglify','replace','jsinspect']);
   grunt.registerTask('check', ['banner','jshint','jsinspect','karma']);
+  grunt.registerTask('ftp', ['ftpPut']);
 
 };
