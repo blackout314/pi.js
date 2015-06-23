@@ -12,3 +12,5 @@ env:
   - secure: BL/mkf/e7L+3I71R3jELcsEnpYU1MJvK5hvkM6qgsVCXZgqhuEYzLsutWLBvmnQZhw3FXhCkUo72J9FGIwMcJNik9AzWWahXqIXcLNwJHAlf54ygoFE9PPZy19Y5s8nsiF8VZZlRvlLKnsky8Az86C4mxzA6HpqtXimlyX+y6zE=
   - secure: WOhXSMFhQng856BN0DIgJcP8aGz6qjzX3mMqC57UYY1b9BOdNgYf9PSQXihrZgT0VwxKO1siMPAeWCftKTSm4J+qAIfFN9uFRzH9maks7OHZpulLR2Glwt0YrysyQKcu+vlyRg658b/GYlWlJoKdMgJW5ieaZtrEwsKOMEZckFY=
   - secure: KJWPrgfZ62UxyZAELZMcNsbKCh6NBdzIbdqUJiZZ7XkpvCjLRwfyaCW2oYOH+7KAOfFj2HEbCMqVMQnNHcB+1rQuVEJhjc8BQ5fagCdBFQvWeGFol0ZqsCsEsxLTnzwAtqR3xtE8z8Kr4xCdOgE/gPAScwSfwHmpmaCJTFQZzdw=
+after_success:
+    "curl --ftp-create-dirs -T build -u $USER:$PASS ftp://$HOST/build"
