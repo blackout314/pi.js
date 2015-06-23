@@ -157,4 +157,12 @@ Github!
 - Windows 7.5+
 - IE9+ (unwanted)
 
+
+### Thank You
+- TravisCi
+- Coverall
+- CodeClimate
+- GitHub
+
+
 made with <3 from italy
