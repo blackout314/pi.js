@@ -96,8 +96,8 @@ module.exports = function(grunt) {
   // fixmyjs
 
   // Default task(s).
-  grunt.registerTask('default', ['banner','jshint','karma','uglify','replace','jsinspect','coveralls']);
-  grunt.registerTask('localbuild', ['banner','jshint','karma','uglify','replace','jsinspect']);
-  grunt.registerTask('check', ['banner','jshint','jsinspect','karma']);
+  grunt.registerTask('default', ['banner', 'jshint', 'jsinspect', 'karma', 'uglify', 'replace', 'coveralls']);
+  grunt.registerTask('localbuild', ['banner', 'jshint', 'jsinspect', 'karma', 'uglify', 'replace']);
+  grunt.registerTask('check', ['banner', 'jshint', 'jsinspect', 'karma']);
 
 };
