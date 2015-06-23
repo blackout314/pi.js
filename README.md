@@ -110,6 +110,7 @@ pi.A({
 
 
 ### Routes 
+
 ```javascript
 var ok = function (action,arg1,arg2) { console.log(arg1); };
 pi.R.add('news', ok);	-> hash ->	#!/news/arg1/arg2
@@ -126,17 +127,6 @@ pi.R.bundle( [
 ] );
 pi.R.start('defaultAction');
 ```
-
-
-## AddOn
-
-### Lazyload 
-
-[vanilla-lazyload](https://github.com/verlok/lazyload)
-```javascript
-var l = new Lazyload(); // see doc in libs page
-```
-
 
 ## Questions
 
