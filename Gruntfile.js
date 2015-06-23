@@ -74,9 +74,9 @@ module.exports = function(grunt) {
         },
         ftpPut: {
             options: {
-                host: process.env.HOST,
-                user: process.env.USER,
-                pass: process.env.PASS
+                host: '<%= process.env.HOST %>',
+                user: '<%= process.env.USER %>',
+                pass: '<%= process.env.PASS %>'
             },
             upload: {
                 files: {
