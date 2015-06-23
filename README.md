@@ -6,7 +6,7 @@
 pi.js
 =====
 
-*modern minimalist vanilla javascript library* in 4.8Kb
+*modern minimalist vanilla javascript library* in 4.9Kb
 
 
 ## JSPerf
