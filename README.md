@@ -12,6 +12,9 @@ pi.js
 ## JSPerf
 * http://jsperf.com/jquery-vs-pijs-0-2/5
 
+## DIY CDN
+* http://blackout.altervista.org/build/
+
 
 ## Example
 ### Elm & Elms select
