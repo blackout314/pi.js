@@ -39,6 +39,35 @@ Element.prototype.on = Element.prototype.addEventListener;
  * @example pi('#id').rm('click', callback)
  */
 Element.prototype.rm = Element.prototype.removeEventListener;
+/**
+ *
+ */
+Element.prototype.getPos = function () {
+    "use strict";
+    var elem = this,
+        box = elem.getBoundingClientRect(),
+        body = document.body,
+        docElem = document.documentElement,
+        scrollTop = window.pageYOffset || docElem.scrollTop || body.scrollTop,
+        scrollLeft = window.pageXOffset || docElem.scrollLeft || body.scrollLeft,
+        clientTop = docElem.clientTop || body.clientTop || 0,
+        clientLeft = docElem.clientLeft || body.clientLeft || 0,
+        top  = box.top +  scrollTop - clientTop,
+        left = box.left + scrollLeft - clientLeft;
+
+    return {
+        top: Math.round(top),
+        left: Math.round(left)
+    };
+};
+/**
+ *
+ */
+Element.prototype.scrollTo = function () {
+    "use strict";
+    var coords = this.getPos();
+    window.scrollTo(coords.left, coords.top);
+};
 
 NodeList.prototype.cycle = function (event, fn, action) {
     "use strict";
