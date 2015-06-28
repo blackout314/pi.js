@@ -66,3 +66,11 @@ test('dom foreach', function() {
     console.log(result);
     ok( result === false );
 });
+
+test('getPos', function() {
+    var pos = pi('#d1').getPos(),
+        pos2 = pi('#d2').getPos();
+    ok(pos.left==8);
+    ok(pos.top==8);
+    ok(pos2.top==27);
+});
