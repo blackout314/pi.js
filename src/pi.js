@@ -44,8 +44,7 @@ Element.prototype.rm = Element.prototype.removeEventListener;
  */
 Element.prototype.getPos = function () {
     "use strict";
-    var elem = this,
-        box = elem.getBoundingClientRect(),
+    var box = this.getBoundingClientRect(),
         body = document.body,
         docElem = document.documentElement,
         scrollTop = window.pageYOffset || docElem.scrollTop || body.scrollTop,
