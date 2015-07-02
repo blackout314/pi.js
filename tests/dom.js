@@ -83,3 +83,13 @@ test('scrollTo', function() {
     stub.restore();
     getPosStub.restore();
 });
+
+test('domReady', function() {
+    var stub = sinon.stub(document, 'addEventListener'),
+        flag = 0;
+    pi.ready(function(){
+        flag = 1;
+    });
+    ok( stub.called == true );
+    stub.restore();
+});
