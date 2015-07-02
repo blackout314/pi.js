@@ -72,5 +72,14 @@ test('getPos', function() {
         pos2 = pi('#d2').getPos();
     ok(pos.left==8);
     ok(pos.top==8);
-    ok(pos2.top==27);
+    ok(pos2.top>=27);
+});
+
+test('scrollTo', function() {
+    var getPosStub = sinon.stub(Element.prototype, 'getPos', function(){ return {left:10,top:10}; } ),
+        stub = sinon.stub(window, 'scrollTo');
+    pi('#d2').scrollTo();
+    ok( getPosStub.called == true );
+    stub.restore();
+    getPosStub.restore();
 });
