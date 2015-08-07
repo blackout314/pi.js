@@ -2,20 +2,25 @@
   "name": "pi.js",
   "version": "0.3.1",
   "devDependencies": {
-    "grunt": "~0.4.2",
+    "grunt": "^0.4.5",
+    "grunt-contrib-jasmine": "^0.9.1",
     "grunt-contrib-jshint": "~0.6.3",
     "grunt-contrib-nodeunit": "~0.2.0",
     "grunt-contrib-uglify": "~0.4.0",
-    "grunt-karma": "~0.6",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-jsinspect": "^0.4.1",
+    "grunt-karma": "^0.12.0",
     "grunt-karma-coveralls": "^2.5.3",
     "grunt-replace": "~0.6.2",
-    "karma": "~0.10",
+    "jasmine": "^2.3.2",
+    "jasmine-core": "^2.3.4",
+    "karma": "~0.13",
     "karma-coverage": "~0.1",
+    "karma-jasmine": "^0.3.6",
     "karma-phantomjs-launcher": "~0.1",
     "karma-qunit": "~0.1",
     "karma-sinon": "~1.0",
-    "zuul": "^1.17.1",
-    "grunt-jsinspect": "^0.4.1"
+    "zuul": "^1.17.1"
   },
   "scripts": {
     "test": "grunt default"

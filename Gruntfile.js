@@ -33,20 +33,23 @@ module.exports = function(grunt) {
                     ]
                 },
                 files: [
-                    { 
-                        expand: true, 
-                        flatten: true, 
+                    {
+                        expand: true,
+                        flatten: true,
                         src: ['build/<%= pkg.version %>/<%= pkg.name %>.min.js'],
                         dest: 'build/<%= pkg.version %>/'
                     }
                 ]
           }
         },
-		karma: {
-			unit: {
-				configFile: "karma.conf.js"
-			}
-		},
+    		karma: {
+    			unit: {
+    				configFile: "karma.conf.js"
+    			},
+          unitj: {
+            configFile: "karma-jasmine.conf.js"
+          }
+    		},
         coveralls: {
             options: {
                 debug: true,
@@ -71,9 +74,25 @@ module.exports = function(grunt) {
                     '!**/node_modules/**'
                 ]
             }
+        },
+
+        /* ---- jasmine prova ---- */
+        jasmine: {
+            test: {
+                src: ['src/**/*.js'],
+                options: {
+                    specs: ['jasmine-tests/**/*.js']
+                }
+            }
+        },
+        watch: {
+          test : {
+            files: ['src/**/*.js', 'jasmine-tests/**/*.js'],
+            tasks: 'jasmine:test'
+          }
         }
     });
-      
+
     grunt.registerTask('banner', function() {
         grunt.log.writeln(' ' );
         grunt.log.writeln('       ____');
@@ -89,6 +108,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-karma-coveralls');
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-jasmine');
+  grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-jsinspect');
 
   // grunt-perfbudget (?)
@@ -96,8 +117,9 @@ module.exports = function(grunt) {
   // fixmyjs
 
   // Default task(s).
-  grunt.registerTask('default', ['banner', 'jshint', 'jsinspect', 'karma', 'uglify', 'replace', 'coveralls']);
-  grunt.registerTask('localbuild', ['banner', 'jshint', 'jsinspect', 'karma', 'uglify', 'replace']);
-  grunt.registerTask('check', ['banner', 'jshint', 'jsinspect', 'karma']);
+  grunt.registerTask('default', ['banner', 'jshint', 'jsinspect', 'karma:unit', 'uglify', 'replace', 'coveralls']);
+  grunt.registerTask('localbuild', ['banner', 'jshint', 'jsinspect', 'karma:unit', 'uglify', 'replace']);
+  grunt.registerTask('check', ['banner', 'jshint', 'jsinspect', 'karma:unit']);
+  grunt.registerTask('checkj', ['banner', 'jshint', 'jsinspect', 'karma:unitj']);
 
 };
