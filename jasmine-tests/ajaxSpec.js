@@ -1,4 +1,4 @@
-describe("Ajax Functions", function() {
+xdescribe("Ajax Functions", function() {
 
   beforeEach(function() {
     var server = sinon.fakeServer.create();
