@@ -27,12 +27,14 @@ describe("DOM classAdd classDel classHas", function() {
   });
 
   it("i try to use pii classAdd", function() {
+    spyOn(pii,"forEach");
     pii.classAdd('.o', 'prova');
     var cosa = pi.classHas('#d1','prova');
-    expect( cosa ).toBe(true); // DOVREBBE essere true > bug di phantomjs risolto nella 2.0 - in pratica typeof di document.querySelectorAll è function
+    expect( pii.forEach ).toHaveBeenCalled();
+    // expect( cosa ).toBe(true); // DOVREBBE essere true > bug di phantomjs risolto nella 2.0 - in pratica typeof di document.querySelectorAll è function
   });
 
-  if("i try to use H.append", function() {
+  it("i try to use H.append", function() {
     pi.H.append('#append','#test');
     expect( pi('body div #append') ).not.toBe(null);
   });

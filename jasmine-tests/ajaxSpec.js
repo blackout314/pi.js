@@ -1,15 +1,15 @@
-xdescribe("Ajax Functions", function() {
+describe("Ajax Functions", function() {
 
+  var server = sinon.fakeServer.create();
   beforeEach(function() {
-    var server = sinon.fakeServer.create();
-  	server.respondWith("GET", "example.json", [
-  		200,
-  		{"Content-Type": "application/json"},
-  		'[{"id": 0, "tweet": "Hello World"}]'
-  		]
-  	);
-
+    server.respondWith("GET", "example.json", [
+	200,
+	{"Content-Type": "application/json"},
+	'[{"id": 0, "tweet": "Hello World"}]'
+	]
+    );
   });
+
   afterEach(function() {
     server.restore();
   });
@@ -18,15 +18,16 @@ xdescribe("Ajax Functions", function() {
     var checkData = {};
 
     var f = function (data) {
-  		checkData = JSON.parse(data);
-  	};
-  	pi.A({
-  		type:'GET',
-  		url:'example.json',
-  		success:f
-  	});
+	checkData = JSON.parse(data);
+    };
+    pi.A({
+	type:'GET',
+	url:'example.json',
+	success:f
+    });
     server.respond();
 
     expect( checkData[0].tweet ).toBe("Hello World");
   });
+
 });
