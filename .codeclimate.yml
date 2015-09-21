@@ -2,3 +2,6 @@ languages:
     JavaScript: true
 exclude_paths:
 - tests/*.js
+- jasmine-tests/*.js
+- karma-jasmine.conf.js
+- karma.conf.js
