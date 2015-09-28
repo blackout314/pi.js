@@ -9,7 +9,15 @@ module.exports = function(grunt) {
             banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
           },
           build: {
-            src: ['src/*.js'],
+            src: [
+              'src/pi.js',
+              'src/html.js',
+              'src/ajax.js',
+              'src/events.js',
+              'src/storage.js',
+              'src/util.pubsub.js',
+              'src/util.route.js'
+            ],
             dest: 'build/<%= pkg.version %>/<%= pkg.name %>.min.js'
           }
         },

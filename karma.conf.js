@@ -6,13 +6,22 @@ module.exports = function(config) {
     frameworks: ['qunit','sinon'],
 	reporters: ['progress', 'coverage'],
 	preprocessors: {
-		'src/pi.js': ['coverage']
+		'src/*.js': ['coverage']
     },
 	coverageReporter: {
       type : 'lcov',
       dir : 'coverage/'
     },
 	browsers: ['Firefox'],
-	files: [ "src/*.js", "tests/**.js" ]
+	files: [ 
+    'src/pi.js',
+    'src/html.js',
+    'src/ajax.js',
+    'src/events.js',
+    'src/storage.js',
+    'src/util.pubsub.js',
+    'src/util.route.js',
+    "tests/**.js" 
+  ]
   });
 };

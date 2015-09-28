@@ -1,6 +1,6 @@
 {
-  "name": "pi.js",
-  "version": "0.3.1",
+  "name": "pi",
+  "version": "0.3.2",
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-contrib-jasmine": "^0.9.1",
