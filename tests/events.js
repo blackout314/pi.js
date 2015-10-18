@@ -12,7 +12,7 @@ test('pi.E : events test ok', function(){
 });
 
 test('pi.E events on', function(){
-	var a = function(){ console.log('x'); };
+	var a = function(){ /* console.log('x');*/ };
 	pi.E.on('#test','click',a); // add event
 	ok( pi.E.eventsArray['#test']['click'].length === 1 );
 
@@ -21,7 +21,7 @@ test('pi.E events on', function(){
 });
 
 test('pi.E events rm', function(){
-	var a = function(){ console.log('x'); };
+	var a = function(){ /*console.log('x');*/ };
 	pi.E.on('#test','click',a); // add event
 	ok( pi.E.eventsArray['#test']['click'].length === 1 );
 

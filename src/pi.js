@@ -103,7 +103,7 @@ pi.ready = function (callback) {
 
 pi.C = {
 	"version" : "@@VERSION_NUMBER",
-	"DEBUG" : true,
+	"DEBUG" : false,
 	feature : {
         "srcSetSupported" : typeof (new Image().srcset) !== 'undefined',     // srcset supported?
 		"addEventListener" : !!window.addEventListener,                   // eventListener

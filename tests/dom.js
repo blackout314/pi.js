@@ -63,7 +63,7 @@ test('dom H append', function(){
 
 test('dom foreach', function() {
     var result = pii.forEach('#not', 'classAdd', 'class');
-    console.log(result);
+    //console.log(result);
     ok( result === false );
 });
 
