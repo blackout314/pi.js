@@ -4,6 +4,19 @@
 /*global window,document,Element,NodeList,console,XMLHttpRequest,localStorage,Exception */
 /*jslint plusplus: true */
 
+(function(g) {
+  g.ns = function(names) {
+    var d = names.split('.'),
+      o = g,
+      i;
+    for(i = 0; i < d.length; i += 1) {
+      o[d[i]] = o[d[i]] || {};
+      o = o[d[i]];
+    }
+    return o;
+  }
+})(window)
+
 var pi = document.querySelector.bind(document),
 	pii = document.querySelectorAll.bind(document);
 
@@ -105,12 +118,12 @@ pi.C = {
 	"version" : "@@VERSION_NUMBER",
 	"DEBUG" : false,
 	feature : {
-        "srcSetSupported" : typeof (new Image().srcset) !== 'undefined',     // srcset supported?
-		"addEventListener" : !!window.addEventListener,                   // eventListener
-		"querySelectorAll" : !!document.querySelectorAll,                 // querySelector
-		"classList" : !!document.documentElement.classList                // classList
+    "srcSet" : typeof (new Image().srcset) !== 'undefined',
+		"eventListener" : !!window.addEventListener,
+		"querySelector" : !!document.querySelectorAll,
+		"classList" : !!document.documentElement.classList
 	},
-    "UA" : "XXXXX"
+  "UA" : "XXXXX"
 };
 
 // --------- Tracking Function
