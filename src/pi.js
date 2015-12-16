@@ -14,8 +14,8 @@
       o = o[d[i]];
     }
     return o;
-  }
-})(window)
+  };
+})(window);
 
 var pi = document.querySelector.bind(document),
 	pii = document.querySelectorAll.bind(document);
