@@ -6,7 +6,7 @@ module.exports = function(config) {
 	frameworks: ['qunit','sinon'],
 	reporters: ['mocha', 'coverage'],
 	preprocessors: {
-	'src/*.js': ['coverage']
+	  'src/*.js': ['coverage']
 	},
 	coverageReporter: {
 	type : 'lcov',

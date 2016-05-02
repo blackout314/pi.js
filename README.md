@@ -27,7 +27,7 @@ pii('.class')
 
 ### Class manipulation
 ```javascript
-pi.classAdd('#try', 'newClass');
+pi('#try').addClass('newClass'); // delClass hasClass toggleClass
 pii.classAdd('.class', 'newClass');
 ```
 

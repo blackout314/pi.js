@@ -7,31 +7,22 @@ module("tests", {
 	}
 });
 
-test('dom test', function(){
-	ok( typeof(pi.classAdd) === 'function' );
-});
-
 test('dom classAdd classDel classHas', function(){
 	var test = pi('#test');
-	pi.classAdd(test,'prova');
-	ok( pi.classHas(test,'prova') === true );
+	test.addClass('prova');
+	ok( test.hasClass('prova') === true );
 
-	pi.classAdd('#test','prova2');
-	ok( pi.classHas('#test','prova2') === true );
-
-	pi.classDel(test,'prova');
-	pi.classDel('#test','prova2');
-	ok( pi.classHas(test,'prova') === false );
-	ok( pi.classHas('#test','prova2') === false );
+	test.delClass('prova');
+	ok( test.hasClass('prova') === false );
 });
 
 test('dom classToggle', function(){
 	var test = pi('#test');
-	pi.classToggle(test,'prova');
-	ok( pi.classHas(test,'prova') === true );
+	test.toggleClass('prova');
+	ok( test.hasClass('prova') === true );
 
-	pi.classToggle('#test','prova');
-	ok( pi.classHas('#test','prova') === false );
+	test.toggleClass('prova');
+	ok( test.hasClass('prova') === false );
 });
 
 test('dom H remove', function(){
@@ -40,14 +31,15 @@ test('dom H remove', function(){
 });
 
 test('dom classAdd classDel classToggle forEach', function(){
+  var d1 = pi('#d1');
 	pii.classAdd('.o', 'prova');
-	ok( pi.classHas('#d1','prova') === true );
+	ok( d1.hasClass('prova') === true );
 
 	pii.classDel('.o', 'prova');
-	ok( pi.classHas('#d1','prova') === false );
+	ok( d1.hasClass('prova') === false );
 
 	pii.classToggle('.o', 'prova');
-	ok( pi.classHas('#d1','prova') === true );
+	ok( d1.hasClass('prova') === true );
 });
 
 test('dom H append', function(){

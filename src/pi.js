@@ -167,57 +167,30 @@ pii.forEach = function (elms, operation) {
 	if (typeof (elms) !== 'object' || elms.length <= 0 || typeof (operation) !== 'string') {
 		return false;
 	}
-	args = [ elms[0] ].concat(args);
 	while ((a = elms[i++]) !== undefined) {
-		args[0] = a;
-		pi[operation].apply(pi, args);
+		a[operation](args);
 	}
 };
 
 if (pi.C.feature.classList) {
-	/**
-	 * @name pi.classAdd
-	 * @example pi.classAdd( pi('#id'), 'class' )
-	 */
-	pi.classAdd = function (elm, c) {
+  Element.prototype.addClass = function (c) {
+    "use strict";
+    this.classList.add(c);
+  };
+
+  Element.prototype.delClass = function (c) {
+    "use strict";
+    this.classList.remove(c);
+  };
+
+  Element.prototype.hasClass = function (c) {
 		"use strict";
-		if (typeof (elm) === 'string') {
-			elm = pi(elm);
-		}
-		elm.classList.add(c);
+		return this.classList.contains(c);
 	};
-	/**
-	 * @name pi.classDel
-	 * @example pi.classDel( pi('#id'), 'class' )
-	 */
-	pi.classDel = function (elm, c) {
+
+	Element.prototype.toggleClass = function (c) {
 		"use strict";
-		if (typeof (elm) === 'string') {
-			elm = pi(elm);
-		}
-		elm.classList.remove(c);
-	};
-	/**
-	 * @name pi.classHas
-	 * @example pi.classHas( pi('#id'), 'class' )
-	 */
-	pi.classHas = function (elm, c) {
-		"use strict";
-		if (typeof (elm) === 'string') {
-			elm = pi(elm);
-		}
-		return elm.classList.contains(c);
-	};
-	/**
-	 * @name pi.classToggle
-	 * @example pi.classToggle( pi('#id'), 'class' )
-	 */
-	pi.classToggle = function (elm, c) {
-		"use strict";
-		if (typeof (elm) === 'string') {
-			elm = pi(elm);
-		}
-		elm.classList.toggle(c);
+		this.classList.toggle(c);
 	};
 
 	/**
@@ -225,21 +198,21 @@ if (pi.C.feature.classList) {
 	 */
 	pii.classAdd = function (elms, c) {
 		"use strict";
-		pii.forEach(elms, 'classAdd', c);
+		pii.forEach(elms, 'addClass', c);
 	};
 	/**
 	 * @name pii.classDel
 	 */
 	pii.classDel = function (elms, c) {
 		"use strict";
-		pii.forEach(elms, 'classDel', c);
+		pii.forEach(elms, 'delClass', c);
 	};
 	/**
 	 * @name pii.classToggle
 	 */
 	pii.classToggle = function (elms, c) {
 		"use strict";
-		pii.forEach(elms, 'classToggle', c);
+		pii.forEach(elms, 'toggleClass', c);
 	};
 }
 
