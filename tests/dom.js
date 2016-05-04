@@ -32,13 +32,13 @@ test('dom H remove', function(){
 
 test('dom classAdd classDel classToggle forEach', function(){
   var d1 = pi('#d1');
-	pii.classAdd('.o', 'prova');
+	pii('.o').addClass('prova');
 	ok( d1.hasClass('prova') === true );
 
-	pii.classDel('.o', 'prova');
+	pii('.o').delClass('prova');
 	ok( d1.hasClass('prova') === false );
 
-	pii.classToggle('.o', 'prova');
+	pii('.o').toggleClass('prova');
 	ok( d1.hasClass('prova') === true );
 });
 

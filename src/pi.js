@@ -193,26 +193,19 @@ if (pi.C.feature.classList) {
 		this.classList.toggle(c);
 	};
 
-	/**
-	 * @name pii.classAdd
-	 */
-	pii.classAdd = function (elms, c) {
+  NodeList.prototype.addClass = function (c) {
 		"use strict";
-		pii.forEach(elms, 'addClass', c);
+		pii.forEach(this, 'addClass', c);
 	};
-	/**
-	 * @name pii.classDel
-	 */
-	pii.classDel = function (elms, c) {
+
+  NodeList.prototype.delClass = function (c) {
 		"use strict";
-		pii.forEach(elms, 'delClass', c);
+		pii.forEach(this, 'delClass', c);
 	};
-	/**
-	 * @name pii.classToggle
-	 */
-	pii.classToggle = function (elms, c) {
+
+  NodeList.prototype.toggleClass = function (c) {
 		"use strict";
-		pii.forEach(elms, 'toggleClass', c);
+		pii.forEach(this, 'toggleClass', c);
 	};
 }
 
