@@ -21,7 +21,7 @@
     "karma-phantomjs-launcher": "~0.1",
     "karma-qunit": "~0.1",
     "karma-sinon": "~1.0",
-    "zuul": "^1.17.1",
+    "zuul": "^3.12.0",
     "karma-mocha-reporter": "~1.1.1"
   },
   "scripts": {
