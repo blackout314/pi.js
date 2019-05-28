@@ -9,7 +9,7 @@
     "grunt-contrib-uglify": "~0.4.0",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-jsinspect": "^3.0.0",
-    "grunt-karma": "^0.12.0",
+    "grunt-karma": "^3.0.0",
     "grunt-karma-coveralls": "^2.5.3",
     "grunt-replace": "~1.0.1",
     "jasmine": "^2.3.2",
