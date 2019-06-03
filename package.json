@@ -6,7 +6,7 @@
     "grunt-contrib-jasmine": "^2.0.3",
     "grunt-contrib-jshint": "~2.0.0",
     "grunt-contrib-nodeunit": "~2.0.0",
-    "grunt-contrib-uglify": "~0.4.0",
+    "grunt-contrib-uglify": "~4.0.1",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-jsinspect": "^3.0.0",
     "grunt-karma": "^3.0.2",
