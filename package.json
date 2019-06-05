@@ -2,7 +2,7 @@
   "name": "pi",
   "version": "0.4.1",
   "devDependencies": {
-    "grunt": "^0.4.5",
+    "grunt": "^1.0.4",
     "grunt-contrib-jasmine": "^2.0.3",
     "grunt-contrib-jshint": "~2.0.0",
     "grunt-contrib-nodeunit": "~2.0.0",
